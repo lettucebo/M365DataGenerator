@@ -1,0 +1,11 @@
+{
+  "packId": "fixture",
+  "version": "1.1",
+  "accountSource": "Existing",
+  "company": {"id": "test-company", "name": "Fictional Test", "industry": "Training", "locale": "en-US"},
+  "businessUnits": [{"id": "ops", "name": "Operations"}],
+  "people": [
+    {"personaId": "alice", "identityHint": {"displayName": "Alice Test", "alias": "alice"}, "profile": {"jobTitle": "Lead", "department": "Operations", "companyName": "Fictional Test", "officeLocation": "Test"}},
+    {"personaId": "bob", "identityHint": {"displayName": "Bob Test", "alias": "bob"}, "profile": {"jobTitle": "Analyst", "department": "Operations", "companyName": "Fictional Test"}, "managerRef": "alice"}
+  ]
+}

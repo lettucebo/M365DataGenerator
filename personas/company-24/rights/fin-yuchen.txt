@@ -1,0 +1,43 @@
+SFHQ Part2 portrait evidence — fin-yuchen
+Retrieved/reviewed: 2026-10-31
+Fictional casting: 蔡昱辰; not identification of any real person.
+
+IMAGE RIGHTS (not the repository code license)
+Dataset publisher: David Beniaguev (SelfishGene).
+Publisher dataset page: https://www.kaggle.com/datasets/selfishgene/synthetic-faces-high-quality-sfhq-part-2
+Publisher JSON-LD license observed in the public page:
+{"@type":"CreativeWork","name":"CC0: Public Domain","url":"https://creativecommons.org/publicdomain/zero/1.0/"}
+Image license identifier: CC0-1.0 / CC0 1.0 Universal.
+License URL: https://creativecommons.org/publicdomain/zero/1.0/
+CC0 permits copying, redistribution and adaptation; no attribution condition.
+Voluntary attribution: SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.
+Repository MIT applies to code, not a relabeling of these CC0 images.
+No warranty of identity resemblance or third-party rights beyond the publisher's declaration is inferred.
+
+EXACT SOURCE
+Dataset version: 4
+Dataset file: a small sample (650 images)/SFHQ_pt2_00000096.jpg
+Official anonymous single-file GET: https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000096.jpg
+Original bytes: 147266
+Original SHA-256: 0f88e8662e632d4909f8c665f5a13d54dcc9f891dadb98afa470d63be8024455
+Only the official per-file API was requested; no account, cookies, credentials, full archive or other image source.
+Temporary signed storage redirect URLs are not retained.
+
+GENERATION PROVENANCE
+Publisher repository: https://github.com/SelfishGene/SFHQ-dataset
+Primary README: https://raw.githubusercontent.com/SelfishGene/SFHQ-dataset/main/README.md
+Retrieved README SHA-256: d81c0a57848ce1acc266bd4890bb1831436e9dbbc57661620f9dfba581eb264d
+Publisher documents SFHQ Part2 as synthetic, using Face Synthetics and Stable Diffusion v1.4 varied portrait inspirations, encoded through e4e into StyleGAN2 and curated. Individual prompt, seed and inspiration branch are not supplied.
+Publisher describes all dataset images as synthetically generated.
+This is dataset-level generation provenance linked to the exact official file; it is not an invented per-image SD prompt/seed record.
+
+PROCESSED FILE
+Path relative to personas.json: avatars\fin-yuchen.jpg
+SHA-256: 481a72481f537c094d9178738d507b8a86ed99ba3b6deb29d862ccf5b833198e
+Full square 1024×1024 image resized with Pillow LANCZOS to RGB 512×512 JPEG, quality 92, subsampling 0, optimize true; no retouch, face generation, crop, EXIF or source metadata copied.
+
+VISUAL CHECK
+Adult-presenting, single photorealistic face, neutral conventional headshot framing; no child-like, fantasy, nonhuman, costume/uniform or obvious low-quality candidate selected. No identity or sensitive traits inferred.
+Reviewed by: T6 author visual curation (AI-assisted; not an independent legal opinion)
+Fictional casting only, in existing persona order; no inference about a real identity, ethnicity, religion, health or other sensitive trait.
+The parent reviewer must independently inspect the final selected24 contact sheet.

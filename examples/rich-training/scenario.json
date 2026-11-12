@@ -1,0 +1,1570 @@
+{
+  "schemaVersion": "1.0",
+  "scenario": {
+    "id": "chengliu-pilot-202610",
+    "title": "澄流計畫：從製造品質到連線證據與預算閘門（全為虛構）",
+    "locale": "zh-TW",
+    "anchorDate": "2026-10-26",
+    "timeZone": "Asia/Taipei",
+    "personaPackId": "company-24",
+    "learningObjectives": [
+      "以郵件與 Teams 還原 40 台試點而非 120 台全面上線的決策理由",
+      "核對品質分母、事件去重與連線探測，區分觀測改善與因果或 SLA 承諾",
+      "對照 Excel 台帳與 Lists 辨識條件核准、待驗收及尚未付款的不同狀態",
+      "按訊息與資產 ID 查證 owner、期限與未解風險，不臆測未提供的結論"
+    ]
+  },
+  "roles": {
+    "MfgLead": {
+      "personaId": "mfg-yating",
+      "businessUnitId": "manufacturing",
+      "responsibility": "產能與品質放行決策"
+    },
+    "QualityLead": {
+      "personaId": "mfg-chenghan",
+      "businessUnitId": "manufacturing",
+      "responsibility": "批次抽驗、隔離與複測"
+    },
+    "ProductionPlanner": {
+      "personaId": "mfg-yijun",
+      "businessUnitId": "manufacturing",
+      "responsibility": "排程、試點批次與備援產能"
+    },
+    "InfoLead": {
+      "personaId": "it-ziqian",
+      "businessUnitId": "information",
+      "responsibility": "整合架構與交付範圍"
+    },
+    "DataEngineer": {
+      "personaId": "it-yunru",
+      "businessUnitId": "information",
+      "responsibility": "事件去重、資料分母與重送測試"
+    },
+    "FinanceLead": {
+      "personaId": "fin-huiling",
+      "businessUnitId": "finance",
+      "responsibility": "資金配置與條件核准"
+    },
+    "Controller": {
+      "personaId": "fin-yuchen",
+      "businessUnitId": "finance",
+      "responsibility": "預算口徑、驗收及付款閘門"
+    },
+    "TelecomLead": {
+      "personaId": "tel-guanwei",
+      "businessUnitId": "telecom",
+      "responsibility": "連線方案、服務邊界及資源配置"
+    },
+    "NetworkEngineer": {
+      "personaId": "tel-siyu",
+      "businessUnitId": "telecom",
+      "responsibility": "探測、切換及重送行為"
+    },
+    "ProgramLead": {
+      "personaId": "shared-ruoning",
+      "businessUnitId": "shared",
+      "responsibility": "跨 BU 里程碑、決策紀錄與責任追蹤"
+    },
+    "Procurement": {
+      "personaId": "shared-yijie",
+      "businessUnitId": "shared",
+      "responsibility": "採購範圍、合約及驗收包"
+    },
+    "SecurityLead": {
+      "personaId": "shared-yawen",
+      "businessUnitId": "shared",
+      "responsibility": "資料邊界、存取演練與證據檢查"
+    }
+  },
+  "stories": [
+    {
+      "id": "quality-gate",
+      "title": "第一道閘門：不把複測合格誤當全面投產",
+      "facts": [
+        {
+          "id": "fictional",
+          "text": "本集團、北辰示範廠、M42 設備、數據、採購及對話皆為原創虛構；無真實客戶、法規或交易背書。"
+        },
+        {
+          "id": "quality-counts",
+          "text": "120 台分 A/B/C 各40台。10/19 不合格3/2/3共8台；10/21複測0/1/1共2台。合格112/120=93.33%變118/120=98.33%，增加5個百分點。"
+        },
+        {
+          "id": "pilot-scope",
+          "text": "10/21只放行A批40台進受控試點；B、C合格共78台暫不部署，2台持續隔離。試點仍須通過10/23整合閘門及10/26財務條件核准。"
+        },
+        {
+          "id": "quality-action",
+          "text": "陳承翰負責2台隔離原因分析，期限10/27 17:00；黃怡君保留B/C排程，不將118台合格數當部署數。"
+        }
+      ]
+    },
+    {
+      "id": "integration-gate",
+      "title": "第二道閘門：連得上不代表事件可直接結算",
+      "facts": [
+        {
+          "id": "same-cohort",
+          "text": "兩輪受控測試均為A批40台的240筆輸入事件。10/21輪詢重複18、唯一222、P95 14秒；10/23邊緣去重重複3、唯一237、P95 6秒。3筆重複保留隔離，不算新產出。"
+        },
+        {
+          "id": "network-counts",
+          "text": "各輪200次探測，成功190變198，成功率95%變99%，增加4個百分點；僅為此測試窗口觀測，不是商用SLA，也不能證明去重單獨造成改善。"
+        },
+        {
+          "id": "integration-decision",
+          "text": "10/23採邊緣去重、停用未核准的外送雲端方案；40台受控試點技術條件通過，但付款仍待10/27存取撤銷演練。"
+        },
+        {
+          "id": "integration-action",
+          "text": "許芸茹10/27 12:00前交3筆隔離事件追蹤；蘇思妤10/27 15:00前重做切換鍵值演練；唐雅雯10/27 16:00前交存取撤銷證據。"
+        }
+      ]
+    },
+    {
+      "id": "funding-gate",
+      "title": "第三道閘門：核准試點不等於付款或擴大採購",
+      "facts": [
+        {
+          "id": "budget-cap",
+          "text": "試點總額上限新臺幣600000元；硬體240000、連線96000、整合144000，擬約定共480000；保留120000未動支。早期120台一次部署估720000方案不採用。"
+        },
+        {
+          "id": "acceptance",
+          "text": "截至10/26，硬體與連線驗收證據共336000元齊備；整合144000元待10/27存取撤銷演練。證據齊備不是已付款，案例沒有任何實際付款。"
+        },
+        {
+          "id": "funding-decision",
+          "text": "劉慧玲10/26條件核准40台受控試點，不核准120台全面部署、不動用保留額，也不准先付整合款。"
+        },
+        {
+          "id": "funding-action",
+          "text": "方奕傑10/28 12:00前依演練結果補驗收包；蔡昱辰10/28 17:00前覆核付款閘門。未通過則維持待驗收，不以口頭同意代替證據。"
+        }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "quality-data",
+      "workbookId": "quality-book",
+      "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "destination": {
+        "workload": "onedrive",
+        "containerId": "presenter-drive",
+        "folder": "Chengliu",
+        "name": "Quality-Observations.xlsx"
+      }
+    },
+    {
+      "id": "integration-data",
+      "workbookId": "integration-book",
+      "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "destination": {
+        "workload": "sharepoint",
+        "containerId": "chengliu-site",
+        "folder": "Chengliu",
+        "name": "Integration-Observations.xlsx"
+      }
+    },
+    {
+      "id": "budget-data",
+      "workbookId": "budget-book",
+      "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "destination": {
+        "workload": "sharepoint",
+        "containerId": "chengliu-site",
+        "folder": "Chengliu",
+        "name": "Budget-Acceptance.xlsx"
+      }
+    },
+    {
+      "id": "quality-decision",
+      "localPath": "assets\\quality-decision.txt",
+      "sha256": "ad7911570a1cb74f59589457775959cd59adc5ba08d5a952da424737093fc0b3",
+      "mediaType": "text/plain",
+      "destination": {
+        "workload": "sharepoint",
+        "containerId": "chengliu-site",
+        "folder": "Chengliu",
+        "name": "quality-decision.txt"
+      }
+    },
+    {
+      "id": "integration-runbook",
+      "localPath": "assets\\integration-runbook.txt",
+      "sha256": "9dda340905d142289833e4f216fbcb056b7389918a40058c7f9e0703b4c98bd4",
+      "mediaType": "text/plain",
+      "destination": {
+        "workload": "sharepoint",
+        "containerId": "chengliu-site",
+        "folder": "Chengliu",
+        "name": "integration-runbook.txt"
+      }
+    },
+    {
+      "id": "funding-decision",
+      "localPath": "assets\\funding-decision.txt",
+      "sha256": "e4d89383ac6f065e397a9cee400f056ba3742cb7e0c1a439d24574dff0af59f1",
+      "mediaType": "text/plain",
+      "destination": {
+        "workload": "sharepoint",
+        "containerId": "chengliu-site",
+        "folder": "Chengliu",
+        "name": "funding-decision.txt"
+      }
+    }
+  ],
+  "workbooks": [
+    {
+      "id": "quality-book",
+      "sheets": [
+        {
+          "name": "批次觀測",
+          "table": "QualityLots",
+          "columns": [
+            {
+              "name": "批次",
+              "type": "string"
+            },
+            {
+              "name": "抽驗台數",
+              "type": "integer"
+            },
+            {
+              "name": "初驗不合格台數",
+              "type": "integer"
+            },
+            {
+              "name": "複測不合格台數",
+              "type": "integer"
+            },
+            {
+              "name": "狀態",
+              "type": "string"
+            }
+          ],
+          "rows": [
+            [
+              "A",
+              40,
+              3,
+              0,
+              "40台受控試點"
+            ],
+            [
+              "B",
+              40,
+              2,
+              1,
+              "39台合格待排程、1台隔離"
+            ],
+            [
+              "C",
+              40,
+              3,
+              1,
+              "39台合格待排程、1台隔離"
+            ]
+          ]
+        },
+        {
+          "name": "口徑與來源",
+          "table": "QualityNotes",
+          "columns": [
+            {
+              "name": "項目",
+              "type": "string"
+            },
+            {
+              "name": "說明",
+              "type": "string"
+            }
+          ],
+          "rows": [
+            [
+              "來源",
+              "原創虛構；scenario.json quality-gate/q-mail-4，2026-10-21；非真實工廠紀錄"
+            ],
+            [
+              "期間",
+              "初驗2026-10-19，複測2026-10-21；同組120台，非不同樣本"
+            ],
+            [
+              "比率解讀",
+              "112/120=93.33%；118/120=98.33%；增加5個百分點。此表為原始觀測，不含計算欄"
+            ],
+            [
+              "範圍",
+              "只放行A批40台試點，B/C合格78台未部署；2台隔離未結案"
+            ],
+            [
+              "後續",
+              "陳承翰2026-10-27 17:00前交隔離原因分析；須通過技術及財務閘門"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "integration-book",
+      "sheets": [
+        {
+          "name": "受控測試觀測",
+          "table": "IntegrationRuns",
+          "columns": [
+            {
+              "name": "日期",
+              "type": "string"
+            },
+            {
+              "name": "方案",
+              "type": "string"
+            },
+            {
+              "name": "輸入筆數",
+              "type": "integer"
+            },
+            {
+              "name": "重複隔離筆數",
+              "type": "integer"
+            },
+            {
+              "name": "可用唯一筆數",
+              "type": "integer"
+            },
+            {
+              "name": "P95秒",
+              "type": "integer"
+            },
+            {
+              "name": "探測次數",
+              "type": "integer"
+            },
+            {
+              "name": "成功次數",
+              "type": "integer"
+            }
+          ],
+          "rows": [
+            [
+              "2026-10-21",
+              "輪詢基準",
+              240,
+              18,
+              222,
+              14,
+              200,
+              190
+            ],
+            [
+              "2026-10-23",
+              "邊緣去重",
+              240,
+              3,
+              237,
+              6,
+              200,
+              198
+            ]
+          ]
+        },
+        {
+          "name": "判讀與待辦",
+          "table": "IntegrationNotes",
+          "columns": [
+            {
+              "name": "項目",
+              "type": "string"
+            },
+            {
+              "name": "說明",
+              "type": "string"
+            }
+          ],
+          "rows": [
+            [
+              "來源",
+              "原創虛構；scenario.json integration-gate/i-mail-3，2026-10-23；非商用服務報表"
+            ],
+            [
+              "集合",
+              "A批40台；兩輪各240筆；本表可用唯一筆數為觀測紀錄，非Excel計算欄"
+            ],
+            [
+              "限制",
+              "95%變99%為探測成功率增加4個百分點，不是SLA，不能證明單一因果"
+            ],
+            [
+              "資料邊界",
+              "採邊緣去重；未核准外送雲端，不估造雲端比較數據"
+            ],
+            [
+              "狀態",
+              "技術條件通過；3筆隔離待追蹤；整合付款待2026-10-27存取撤銷演練"
+            ],
+            [
+              "期限",
+              "許芸茹10/27 12:00追蹤；蘇思妤15:00切換鍵值；唐雅雯16:00撤銷證據"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "budget-book",
+      "sheets": [
+        {
+          "name": "分包驗收觀測",
+          "table": "BudgetPackages",
+          "columns": [
+            {
+              "name": "驗收包",
+              "type": "string"
+            },
+            {
+              "name": "擬約定新臺幣元",
+              "type": "integer"
+            },
+            {
+              "name": "證據齊備新臺幣元",
+              "type": "integer"
+            },
+            {
+              "name": "待驗收新臺幣元",
+              "type": "integer"
+            },
+            {
+              "name": "狀態",
+              "type": "string"
+            }
+          ],
+          "rows": [
+            [
+              "硬體",
+              240000,
+              240000,
+              0,
+              "證據齊備；非已付款"
+            ],
+            [
+              "連線",
+              96000,
+              96000,
+              0,
+              "證據齊備；非已付款"
+            ],
+            [
+              "整合",
+              144000,
+              0,
+              144000,
+              "待10/27存取撤銷演練"
+            ]
+          ]
+        },
+        {
+          "name": "預算與核准條件",
+          "table": "BudgetConditions",
+          "columns": [
+            {
+              "name": "項目",
+              "type": "string"
+            },
+            {
+              "name": "說明",
+              "type": "string"
+            }
+          ],
+          "rows": [
+            [
+              "來源",
+              "原創虛構；scenario.json funding-gate/f-mail-3及f-mail-4，2026-10-26；非真實交易"
+            ],
+            [
+              "單位",
+              "全表新臺幣元；列值為驗收包觀測快照，非會計預測或付款模型，未設計算欄"
+            ],
+            [
+              "上限",
+              "600000；擬約定480000；保留120000未動支；證據齊備336000與待驗收144000對回480000"
+            ],
+            [
+              "不採方案",
+              "120台一次部署估720000；範圍不同，不據此宣稱單價折扣或投資報酬"
+            ],
+            [
+              "核准",
+              "2026-10-26劉慧玲條件核准A批40台；不擴大120台，不動用保留額，不先付整合款"
+            ],
+            [
+              "依賴",
+              "唐雅雯10/27 16:00交證據；方奕傑10/28 12:00補包；蔡昱辰10/28 17:00覆核閘門"
+            ],
+            [
+              "付款",
+              "本案例沒有實際付款。演練或文件不符則維持待驗收，不以口頭同意替代"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "outlook": {
+    "threads": [
+      {
+        "id": "quality-mail",
+        "storyId": "quality-gate",
+        "messages": [
+          {
+            "id": "q-mail-1",
+            "action": "send",
+            "parentId": null,
+            "fromRole": "MfgLead",
+            "toRoles": [
+              "QualityLead",
+              "ProductionPlanner",
+              "ProgramLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "【虛構澄流｜品質閘門】120 台複測與 40 台試點範圍",
+            "bodyHtml": "<p>各位，10/19 的 M42 到貨共 120 台，A、B、C 三批各 40 台，初驗有 8 台不合格。排程希望一次部署，但我不接受用整體到貨數直接承諾上線；這會讓後續資訊整合與付款都建立在尚未放行的設備上。</p><p>請承翰先依批次列出失敗與複測結果，怡君保留只用 A 批 40 台的排程選項。若品質達標，也僅取得進下一道整合測試的資格，不代表已能全面投產。</p><p>本串為原創虛構教學案例，不是實際工廠通知。請在 10/21 決策前提供可核對台帳及隔離責任人；Presenter 副本供課堂追蹤。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "q-mail-2",
+            "action": "reply",
+            "parentId": "q-mail-1",
+            "fromRole": "QualityLead",
+            "toRoles": [
+              "MfgLead",
+              "ProductionPlanner",
+              "ProgramLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜品質閘門】120 台複測與 40 台試點範圍",
+            "bodyHtml": "<p>10/20 補充：目前能證明的只有初驗，不宜先寫成品質改善已完成。A/B/C 初驗失敗分別為 3/2/3 台，共 8 台；我正在以同一組 120 台逐台複測，避免換掉分母後出現看似漂亮的合格率。</p><p>主要異常集中在接頭固定與韌體設定，仍待複測確認，不在此推定所有失敗都同一原因。我的建議是：即使 10/21 合格台數增加，殘餘不合格設備仍要隔離；排程不能把待複測或隔離設備算進產能。</p><p>我會把批次明細與保留項寫入台帳。請怡君先不要承諾 B、C 全批出站，也不要把暫訂 40 台試點改成 120 台採購承諾。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "q-mail-3",
+            "action": "reply",
+            "parentId": "q-mail-2",
+            "fromRole": "ProductionPlanner",
+            "toRoles": [
+              "QualityLead",
+              "MfgLead",
+              "ProgramLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜品質閘門】120 台複測與 40 台試點範圍",
+            "bodyHtml": "<p>我依 10/20 的保留意見重排：A 批 40 台單獨使用受控窗口，B、C 不併線。這會犧牲原先希望一次完成的排程便利，但可讓資訊與電信團隊用固定設備集合重播事件，不會混入尚未放行的序號。</p><p>排程單將「品質合格」、「可進試點」、「正式部署」拆開，避免用同一個完成勾選。若 A 批仍有不合格，我會延後窗口，不挪用 B、C 補數以維持表面 40 台。</p><p>請承翰在 10/21 交最終批次數；若 A 批全數合格，後續仍需 10/23 技術閘門與 10/26 財務條件核准。尚未解除的隔離設備仍由品質追蹤，責任不會因排程調整消失。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "q-mail-4",
+            "action": "reply",
+            "parentId": "q-mail-3",
+            "fromRole": "QualityLead",
+            "toRoles": [
+              "ProductionPlanner",
+              "MfgLead",
+              "ProgramLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜品質閘門】120 台複測與 40 台試點範圍",
+            "bodyHtml": "<p>10/21 同組設備複測完成，批次數如下；完整觀測台帳在 <a href=\"{{asset:quality-data}}\">品質台帳</a>。這是現況快照，不是故障歸因報告。</p><table><thead><tr><th>批次（各 40 台）</th><th>10/19 初驗不合格（台）</th><th>10/21 複測不合格（台）</th><th>10/21 狀態</th></tr></thead><tbody><tr><td>A</td><td>3</td><td>0</td><td>40 台可進試點</td></tr><tr><td>B</td><td>2</td><td>1</td><td>39 台待排程、1 台隔離</td></tr><tr><td>C</td><td>3</td><td>1</td><td>39 台待排程、1 台隔離</td></tr></tbody></table><p>合格數由 112/120 變 118/120，即 93.33% 變 98.33%，增加 5 個百分點，不是增加 5%。B、C 各 1 台仍隔離，我負責於 10/27 17:00 前補原因分析；其餘 78 台合格但尚未安排部署。</p><p>我支持只讓 A 批 40 台進試點，反對把 118 台合格數直接登錄為上線數。請雅庭以這個分界核准下一步，並保留尚未結案的隔離項。</p>",
+            "assetRefs": [
+              "quality-data"
+            ]
+          },
+          {
+            "id": "q-mail-5",
+            "action": "reply",
+            "parentId": "q-mail-4",
+            "fromRole": "MfgLead",
+            "toRoles": [
+              "QualityLead",
+              "ProductionPlanner",
+              "ProgramLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜品質閘門】120 台複測與 40 台試點範圍",
+            "bodyHtml": "<p>決策確認：10/21 僅放行 A 批 40 台進受控試點；118 台是品質合格數，不是部署範圍。B、C 的 78 台合格設備保留排程，2 台不合格繼續隔離，不以暫時可開機取代正式複測。</p><p><a href=\"{{asset:quality-decision}}\">品質閘門決策紀錄</a>已區分狀態與責任。怡君維護排程，承翰在 10/27 17:00 前交 2 台原因分析，若原因可能影響 A 批，立即回報若寧重新評估，而不是等課堂結束才補註。</p><p>下一步由資訊與電信團隊在 10/23 核對事件完整性；財務在 10/26 審查試點預算。兩道閘門未完成前，本郵件不構成全面部署或付款核准。</p>",
+            "assetRefs": [
+              "quality-decision"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "integration-mail",
+        "storyId": "integration-gate",
+        "messages": [
+          {
+            "id": "i-mail-1",
+            "action": "send",
+            "parentId": null,
+            "fromRole": "InfoLead",
+            "toRoles": [
+              "DataEngineer",
+              "NetworkEngineer",
+              "SecurityLead",
+              "TelecomLead"
+            ],
+            "ccRoles": [
+              "Presenter",
+              "ProgramLead"
+            ],
+            "subject": "【虛構澄流｜整合閘門】240 筆事件、去重與切換證據",
+            "bodyHtml": "<p>承接 10/21 品質閘門，設備集合固定為 A 批 40 台，不把 B、C 加入以放大樣本。今天輪詢基準輸入 240 筆事件，18 筆重複隔離，留下 222 筆唯一事件，P95 延遲 14 秒；請勿把「收到 240 筆」寫成「240 筆有效產出」。</p><p>我們比較現行輪詢與邊緣去重，兩輪都用相同輸入規模；外送雲端的構想尚未通過資料邊界審查，不能用想像的低延遲當作已實測方案。</p><p>請芸茹確認去重鍵，思妤補切換測試與 200 次探測口徑，雅雯提出存取撤銷驗收條件。10/23 只決定技術試點能否繼續，不替財務預先核准付款。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "i-mail-2",
+            "action": "reply",
+            "parentId": "i-mail-1",
+            "fromRole": "NetworkEngineer",
+            "toRoles": [
+              "InfoLead",
+              "DataEngineer",
+              "SecurityLead",
+              "TelecomLead"
+            ],
+            "ccRoles": [
+              "Presenter",
+              "ProgramLead"
+            ],
+            "subject": "Re: 【虛構澄流｜整合閘門】240 筆事件、去重與切換證據",
+            "bodyHtml": "<p>10/22 的設計檢查發現，若切換後重送時產生新鍵，資料庫再快也會把重複事件當新資料。我建議保留裝置與原事件序號組合，跨連線切換不可重建事件身分；測試必須主動造成切換，而不是只測穩定連線。</p><p>基準窗口共 200 次探測，190 次成功，成功率 95%。後續使用同樣 200 次分母，但這只是受控窗口，不是商用 SLA，也不能以成功率推論設備品質。</p><p>電信側會交付切換紀錄與鍵值抽樣；若資料工程發現重送鍵不一致，先隔離，不在試點期間自動補造新的事件。這個保守處理會減少可用事件數，但能保留查證軌跡。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "i-mail-3",
+            "action": "reply",
+            "parentId": "i-mail-2",
+            "fromRole": "DataEngineer",
+            "toRoles": [
+              "NetworkEngineer",
+              "InfoLead",
+              "SecurityLead",
+              "TelecomLead"
+            ],
+            "ccRoles": [
+              "Presenter",
+              "ProgramLead"
+            ],
+            "subject": "Re: 【虛構澄流｜整合閘門】240 筆事件、去重與切換證據",
+            "bodyHtml": "<p>10/23 完成同組 40 台的受控重播，結果見 <a href=\"{{asset:integration-data}}\">整合觀測台帳</a>。</p><table><thead><tr><th>10 月受控測試</th><th>輸入事件（筆）</th><th>重複隔離（筆）</th><th>可用唯一事件（筆）</th><th>P95（秒）</th><th>探測成功（次/200次）</th></tr></thead><tbody><tr><td>10/21 輪詢基準</td><td>240</td><td>18</td><td>222</td><td>14</td><td>190/200</td></tr><tr><td>10/23 邊緣去重</td><td>240</td><td>3</td><td>237</td><td>6</td><td>198/200</td></tr></tbody></table><p>3 筆重複仍保留隔離，237 才是本輪可用唯一事件；我不建議為了追求 240 全數通過而手動補數。P95 由 14 秒變 6 秒是兩輪觀測差異，連線與程式同時調整，不能宣稱全由去重單一因素造成。</p><p>請雅雯確認受控試點的資料邊界。3 筆隔離追蹤由我在 10/27 12:00 前交；這不影響現在保留技術試點，但也不能當作整合驗收包已齊備。</p>",
+            "assetRefs": [
+              "integration-data"
+            ]
+          },
+          {
+            "id": "i-mail-4",
+            "action": "reply",
+            "parentId": "i-mail-3",
+            "fromRole": "SecurityLead",
+            "toRoles": [
+              "DataEngineer",
+              "InfoLead",
+              "NetworkEngineer",
+              "TelecomLead"
+            ],
+            "ccRoles": [
+              "Presenter",
+              "ProgramLead"
+            ],
+            "subject": "Re: 【虛構澄流｜整合閘門】240 筆事件、去重與切換證據",
+            "bodyHtml": "<p>就目前資料邊界，我同意保留在集團受控邊緣環境，不同意把事件外送到尚未核准的雲端端點。現有觀測台帳不含真實客戶或帳務資料，本案例也沒有引用任何法規保證；請勿把資訊安全覆核寫成對外合規認證。</p><p>10/23 可接受 40 台受控試點的技術條件，但付款驗收仍缺存取撤銷演練。由我在 10/27 16:00 前交證據，內容需證明撤銷後舊存取不再可用，不能僅提供管理畫面的勾選截圖。</p><p>請將這項列為未完成而不是「已通過待補文件」。芸茹的 3 筆隔離與思妤的切換鍵值複驗也保留各自 owner 和期限，避免被整體綠燈摘要掩蓋。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "i-mail-5",
+            "action": "reply",
+            "parentId": "i-mail-4",
+            "fromRole": "InfoLead",
+            "toRoles": [
+              "SecurityLead",
+              "DataEngineer",
+              "NetworkEngineer",
+              "TelecomLead"
+            ],
+            "ccRoles": [
+              "Presenter",
+              "ProgramLead"
+            ],
+            "subject": "Re: 【虛構澄流｜整合閘門】240 筆事件、去重與切換證據",
+            "bodyHtml": "<p>10/23 決策：採邊緣去重方案，僅維持 A 批 40 台受控試點，未核准的外送雲端方案不進排程。兩輪各 240 筆輸入的差異已核對；最後一輪可用 237 筆、隔離 3 筆，不將隔離數算進產出。</p><p><a href=\"{{asset:integration-runbook}}\">整合決策與演練手冊</a>列有回退條件。芸茹 10/27 12:00 前交隔離追蹤，思妤 15:00 前交切換鍵值複驗，雅雯 16:00 前交存取撤銷證據。出現重送鍵改變時停止擴大，不以手動補數維持指標。</p><p>請若寧將技術條件通過與整合款待驗收分開帶入 10/26 財務會議。連線探測 99% 不是 SLA；本決策也不構成 120 台全面上線核准。</p>",
+            "assetRefs": [
+              "integration-runbook"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "funding-mail",
+        "storyId": "funding-gate",
+        "messages": [
+          {
+            "id": "f-mail-1",
+            "action": "send",
+            "parentId": null,
+            "fromRole": "ProgramLead",
+            "toRoles": [
+              "Procurement",
+              "Controller",
+              "FinanceLead",
+              "SecurityLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "【虛構澄流｜資金閘門】48 萬試點、12 萬保留與待驗收",
+            "bodyHtml": "<p>10/23 彙整兩道閘門：品質只放行 A 批 40 台；整合技術條件通過，但存取撤銷演練尚未完成。最初 120 台一次部署估新臺幣 720000 元，已超過 600000 元上限，我不建議把超額先記成之後再補的預算。</p><p>請奕傑以 40 台受控試點重整硬體、連線與整合三個驗收包；昱辰逐項分清擬約定金額、證據齊備金額與待驗收金額，不能將有報價當成已付款。</p><p>10/26 請慧玲只決定是否條件核准試點，不讓會議文字被誤讀為全面部署或可提前支付整合款。保留額應有明確用途界線，目前先不動支。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "f-mail-2",
+            "action": "reply",
+            "parentId": "f-mail-1",
+            "fromRole": "Procurement",
+            "toRoles": [
+              "ProgramLead",
+              "Controller",
+              "FinanceLead",
+              "SecurityLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜資金閘門】48 萬試點、12 萬保留與待驗收",
+            "bodyHtml": "<p>10/24 以原有範圍拆成三包：硬體 240000 元、連線 96000 元、整合 144000 元，合計 480000 元，皆為本虛構案例的新臺幣金額，不含任何真實供應商或採購承諾。</p><p>相較 600000 元上限保留 120000 元；我不會將這筆保留額先塞入整合費以使報表看起來用滿。與 120 台 720000 元的早期估案也不是單純價格折扣，而是縮小範圍與驗收方式，不能直接宣稱節省比例代表採購效率。</p><p>硬體與連線的驗收證據可交控制覆核；整合包需等 10/27 存取撤銷演練，尚不能簽成完整驗收。我將在 10/28 12:00 前依結果補包，未通過就維持待驗收。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "f-mail-3",
+            "action": "reply",
+            "parentId": "f-mail-2",
+            "fromRole": "Controller",
+            "toRoles": [
+              "Procurement",
+              "ProgramLead",
+              "FinanceLead",
+              "SecurityLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜資金閘門】48 萬試點、12 萬保留與待驗收",
+            "bodyHtml": "<p>10/26 已核對 <a href=\"{{asset:budget-data}}\">試點預算與驗收台帳</a>，目前口徑如下。</p><table><thead><tr><th>驗收包</th><th>擬約定金額（新臺幣元）</th><th>10/26 證據齊備（元）</th><th>待驗收（元）</th></tr></thead><tbody><tr><td>硬體</td><td>240000</td><td>240000</td><td>0</td></tr><tr><td>連線</td><td>96000</td><td>96000</td><td>0</td></tr><tr><td>整合</td><td>144000</td><td>0</td><td>144000</td></tr></tbody></table><p>擬約定共 480000 元；證據齊備 336000 元，待驗收 144000 元；另有上限內 120000 元未動支保留。這四個數不是可相加的同一種指標，336000 加 144000 才對回 480000。</p><p>案例沒有任何實際付款，不能把證據齊備寫成已支付。我保留整合付款閘門，待雅雯 10/27 演練、奕傑 10/28 12:00 補包，再由我 10/28 17:00 前覆核。請慧玲核准時保留這個條件，不以總額在上限內取代分包驗收。</p>",
+            "assetRefs": [
+              "budget-data"
+            ]
+          },
+          {
+            "id": "f-mail-4",
+            "action": "reply",
+            "parentId": "f-mail-3",
+            "fromRole": "FinanceLead",
+            "toRoles": [
+              "Controller",
+              "Procurement",
+              "ProgramLead",
+              "SecurityLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜資金閘門】48 萬試點、12 萬保留與待驗收",
+            "bodyHtml": "<p>10/26 條件核准 A 批 40 台受控試點，擬約定總額 480000 元，600000 元上限與 120000 元保留維持不變。我不核准 120 台全面部署，也不因硬體與連線已有證據而預先放行 144000 元整合款。</p><p>這是內部教學決策，並非真實交易指示。請若寧在狀態中使用「條件核准／整合待驗收」，不要壓成一個「已完成」；昱辰仍掌握付款閘門，奕傑補包後才可覆核。</p><p>如果 10/27 存取撤銷演練未通過，維持待驗收且不付款，不挪用保留額補救未經核准的範圍。後續擴大或改預算需另提決策，不以本串作概括授權。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "f-mail-5",
+            "action": "reply",
+            "parentId": "f-mail-4",
+            "fromRole": "ProgramLead",
+            "toRoles": [
+              "FinanceLead",
+              "Controller",
+              "Procurement",
+              "SecurityLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "Re: 【虛構澄流｜資金閘門】48 萬試點、12 萬保留與待驗收",
+            "bodyHtml": "<p>已依慧玲的條件核准整理 <a href=\"{{asset:funding-decision}}\">資金閘門決策與交接</a>，SharePoint 行動清單保持未完成項，不把郵件回覆當成所有驗收都結束。</p><p>目前共同基準：40 台受控試點；品質 118/120 合格但僅 A 批部署範圍；事件 237 可用、3 筆隔離；擬約定 480000 元、證據齊備 336000 元、整合待驗收 144000 元，保留 120000 元未動支，沒有實際付款。</p><p>10/27 雅雯交撤銷證據，10/28 12:00 奕傑補驗收包，17:00 昱辰覆核付款閘門；承翰與芸茹另追蹤隔離原因。若缺任一依賴，請列明阻擋，不用「大致完成」替代。Presenter 可依訊息與資產 ID 練習查證，不需接觸真實帳號資料。</p>",
+            "assetRefs": [
+              "funding-decision"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "teams": {
+    "channels": [
+      {
+        "id": "quality-channel",
+        "displayName": "01 品質閘門",
+        "memberRoles": [
+          "MfgLead",
+          "QualityLead",
+          "ProductionPlanner",
+          "InfoLead",
+          "DataEngineer",
+          "FinanceLead",
+          "Controller",
+          "TelecomLead",
+          "NetworkEngineer",
+          "ProgramLead",
+          "Procurement",
+          "SecurityLead",
+          "Presenter"
+        ],
+        "messages": [
+          {
+            "id": "q-post-1",
+            "storyId": "quality-gate",
+            "createdDateTime": "2026-10-19T09:00:00+08:00",
+            "fromRole": "MfgLead",
+            "bodyHtml": "<p>【虛構試點啟動】北辰示範廠 M42 共 120 台，A/B/C 各 40 台。初驗 8 台不合格，現在還不能宣稱可全數部署。<at id=\"0\">QualityLead</at> 請用相同設備集合複測，<at id=\"1\">ProductionPlanner</at> 請保留只排 A 批 40 台的窗口。</p><p>這次要回答的是能否進下一道整合測試，而不是是否能全面投產。請將隔離、排程與部署分開記；即使品質改善，也還有 10/23 技術及 10/26 財務閘門。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "QualityLead",
+                "text": "QualityLead"
+              },
+              {
+                "id": 1,
+                "role": "ProductionPlanner",
+                "text": "ProductionPlanner"
+              }
+            ],
+            "assetRefs": [],
+            "replies": [
+              {
+                "id": "q-post-1-reply-1",
+                "storyId": "quality-gate",
+                "createdDateTime": "2026-10-19T09:30:00+08:00",
+                "fromRole": "QualityLead",
+                "bodyHtml": "<p>我先鎖定 A/B/C 的初驗分母，失敗分別 3/2/3 台，總數 8 台。接頭與設定都有待確認，暫不把所有問題歸為單一根因。<at id=\"0\">MfgLead</at> 我會交同組 120 台的複測，而不是把不合格設備移出分母後重新算率；殘餘不合格也會保留隔離追蹤。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "MfgLead",
+                    "text": "MfgLead"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "q-post-1-reply-2",
+                "storyId": "quality-gate",
+                "createdDateTime": "2026-10-19T10:00:00+08:00",
+                "fromRole": "ProductionPlanner",
+                "bodyHtml": "<p>我會把 A 批 40 台排成獨立受控窗口，B、C 不先併線。代價是無法一次完成原排程，但能讓整合測試固定樣本。<at id=\"0\">QualityLead</at> 若 A 批未全數合格，我會延後而不是臨時拿其他批補數；目前排程保留不代表已核准正式投產。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "QualityLead",
+                    "text": "QualityLead"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          },
+          {
+            "id": "q-post-2",
+            "storyId": "quality-gate",
+            "createdDateTime": "2026-10-20T14:00:00+08:00",
+            "fromRole": "QualityLead",
+            "bodyHtml": "<p>複測尚未結案，先提出判讀方式：合格率採同組 120 台，批次差異保留；不能只顯示一個漂亮的總率。<at id=\"0\">MfgLead</at> 我反對在今天寫「改善完成」，因為尚有設備待確認；<at id=\"1\">ProgramLead</at> 請把試點放行與品質結案拆成不同決策。</p><p>10/21 會交最終批次表。若只放行 A 批，我仍負責其餘隔離設備的根因追蹤，排程縮小不能成為關閉品質問題的理由。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "MfgLead",
+                "text": "MfgLead"
+              },
+              {
+                "id": 1,
+                "role": "ProgramLead",
+                "text": "ProgramLead"
+              }
+            ],
+            "assetRefs": [],
+            "replies": [
+              {
+                "id": "q-post-2-reply-1",
+                "storyId": "quality-gate",
+                "createdDateTime": "2026-10-20T14:30:00+08:00",
+                "fromRole": "ProgramLead",
+                "bodyHtml": "<p>我已把跨 BU 里程碑改成三道閘門，不用單一綠燈涵蓋所有狀態。<at id=\"0\">QualityLead</at> 明天決策紀錄會列可進試點的設備集合及隔離 owner；接著交資訊與電信檢查事件完整性。10/26 財務會議只依已證明範圍討論，不拿尚未結案的台數當承諾。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "QualityLead",
+                    "text": "QualityLead"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "q-post-2-reply-2",
+                "storyId": "quality-gate",
+                "createdDateTime": "2026-10-20T15:00:00+08:00",
+                "fromRole": "ProductionPlanner",
+                "bodyHtml": "<p>排程欄位已區分「品質合格但未部署」與「受控試點」。<at id=\"0\">ProgramLead</at> 如果複測為 118 台合格，也不會自動產生 118 台上線工單；我只準備 A 批窗口。這讓後續分析能指出保留的產能成本，而不是把縮小範圍說成沒有代價的改善。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "ProgramLead",
+                    "text": "ProgramLead"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          },
+          {
+            "id": "q-post-3",
+            "storyId": "quality-gate",
+            "createdDateTime": "2026-10-21T09:00:00+08:00",
+            "fromRole": "MfgLead",
+            "bodyHtml": "<p>10/21 複測決策：只放行 A 批 40 台進受控試點。<at id=\"0\">QualityLead</at> 與 <at id=\"1\">ProductionPlanner</at> 請依下表執行，資料見 <a href=\"{{asset:quality-data}}\">品質台帳</a>。</p><table><thead><tr><th>批次（各 40 台）</th><th>10/19 初驗不合格（台）</th><th>10/21 複測不合格（台）</th><th>10/21 狀態</th></tr></thead><tbody><tr><td>A</td><td>3</td><td>0</td><td>40 台可進試點</td></tr><tr><td>B</td><td>2</td><td>1</td><td>39 台待排程、1 台隔離</td></tr><tr><td>C</td><td>3</td><td>1</td><td>39 台待排程、1 台隔離</td></tr></tbody></table><p>合格 112/120 變 118/120，增加 5 個百分點；118 不是部署數。B、C 共 78 台合格待排程，2 台仍隔離，原因分析期限 10/27 17:00。10/23 技術與 10/26 財務閘門仍保留。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "QualityLead",
+                "text": "QualityLead"
+              },
+              {
+                "id": 1,
+                "role": "ProductionPlanner",
+                "text": "ProductionPlanner"
+              }
+            ],
+            "assetRefs": [
+              "quality-data"
+            ],
+            "replies": [
+              {
+                "id": "q-post-3-reply-1",
+                "storyId": "quality-gate",
+                "createdDateTime": "2026-10-21T09:30:00+08:00",
+                "fromRole": "QualityLead",
+                "bodyHtml": "<p>我接下 2 台隔離的原因分析，期限 10/27 17:00；若發現可能影響 A 批的共同因素，會立即提出重新評估，不等期限到才回報。<at id=\"0\">MfgLead</at> 我會在交接中保留 93.33% 與 98.33% 的相同分母，避免被改寫成只差 5% 或所有問題已結案。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "MfgLead",
+                    "text": "MfgLead"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "q-post-3-reply-2",
+                "storyId": "quality-gate",
+                "createdDateTime": "2026-10-21T10:00:00+08:00",
+                "fromRole": "ProgramLead",
+                "bodyHtml": "<p>我已將 40 台集合交給資訊與電信，不允許測試途中加入 B、C 以補數。<at id=\"0\">MfgLead</at> 財務會議將同時看到「118 台合格」與「40 台試點」兩個欄位；若技術或預算條件未過，品質放行不會被當作可繼續擴大的概括核准。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "MfgLead",
+                    "text": "MfgLead"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "integration-channel",
+        "displayName": "02 整合閘門",
+        "memberRoles": [
+          "MfgLead",
+          "QualityLead",
+          "ProductionPlanner",
+          "InfoLead",
+          "DataEngineer",
+          "FinanceLead",
+          "Controller",
+          "TelecomLead",
+          "NetworkEngineer",
+          "ProgramLead",
+          "Procurement",
+          "SecurityLead",
+          "Presenter"
+        ],
+        "messages": [
+          {
+            "id": "i-post-1",
+            "storyId": "integration-gate",
+            "createdDateTime": "2026-10-21T14:00:00+08:00",
+            "fromRole": "InfoLead",
+            "bodyHtml": "<p>承接品質決策，只用 A 批 40 台。今天輪詢收到 240 筆輸入，其中 18 筆重複隔離，222 筆唯一可用，P95 為 14 秒。<at id=\"0\">DataEngineer</at> 請別把收到數當成產出，<at id=\"1\">NetworkEngineer</at> 請用相同探測分母補切換證據。</p><p>外送雲端目前只是構想，資料邊界未核准，不把猜測的延遲寫進已驗證比較。這個技術試點也不會自動解除整合款驗收條件。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "DataEngineer",
+                "text": "DataEngineer"
+              },
+              {
+                "id": 1,
+                "role": "NetworkEngineer",
+                "text": "NetworkEngineer"
+              }
+            ],
+            "assetRefs": [],
+            "replies": [
+              {
+                "id": "i-post-1-reply-1",
+                "storyId": "integration-gate",
+                "createdDateTime": "2026-10-21T14:30:00+08:00",
+                "fromRole": "DataEngineer",
+                "bodyHtml": "<p>我會保存原事件鍵並逐筆對照隔離紀錄，先把 240 輸入、18 重複、222 可用分開。<at id=\"0\">InfoLead</at> 若重送被重新編號，就算資料庫沒有報錯也可能算成新事件；我會加上切換後重播案例，不以封包收到就判定驗收，也不手動補數達標。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "InfoLead",
+                    "text": "InfoLead"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "i-post-1-reply-2",
+                "storyId": "integration-gate",
+                "createdDateTime": "2026-10-21T15:00:00+08:00",
+                "fromRole": "NetworkEngineer",
+                "bodyHtml": "<p>基準是 200 次探測、190 次成功，即 95%，不是長期 SLA。<at id=\"0\">InfoLead</at> 第二輪仍用 200 次，並記錄切換時點；連線與程式同時調整時，不能把全部差異歸因某一方。我也會檢查重送鍵是否跨切換保持，避免網路恢復卻產生重複業務事件。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "InfoLead",
+                    "text": "InfoLead"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          },
+          {
+            "id": "i-post-2",
+            "storyId": "integration-gate",
+            "createdDateTime": "2026-10-22T10:00:00+08:00",
+            "fromRole": "NetworkEngineer",
+            "bodyHtml": "<p>切換演練的風險不是單純斷線，而是重送後是否保留原事件身分。<at id=\"0\">DataEngineer</at> 我建議以裝置加原事件序號去重，不隨連線重建鍵；<at id=\"1\">SecurityLead</at> 請確認只在受控邊緣環境保存必要測試資料。</p><p>明天會比較同樣 240 筆的輪詢與邊緣去重結果。若有隔離事件，保留待查，不為了滿額通過而直接丟棄；另外將存取撤銷演練獨立列為付款驗收依賴。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "DataEngineer",
+                "text": "DataEngineer"
+              },
+              {
+                "id": 1,
+                "role": "SecurityLead",
+                "text": "SecurityLead"
+              }
+            ],
+            "assetRefs": [],
+            "replies": [
+              {
+                "id": "i-post-2-reply-1",
+                "storyId": "integration-gate",
+                "createdDateTime": "2026-10-22T10:30:00+08:00",
+                "fromRole": "DataEngineer",
+                "bodyHtml": "<p>我接受固定鍵設計，但不會先宣告零重複；測試仍可能看到正當重送。<at id=\"0\">NetworkEngineer</at> 我會區分輸入、隔離及唯一可用三欄，若最後留下 3 筆隔離，便以實際可用數交接。重送鍵變更時停止擴大，追蹤原資料，不製造替代事件來補足數字。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "NetworkEngineer",
+                    "text": "NetworkEngineer"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "i-post-2-reply-2",
+                "storyId": "integration-gate",
+                "createdDateTime": "2026-10-22T11:00:00+08:00",
+                "fromRole": "SecurityLead",
+                "bodyHtml": "<p>我同意受控邊緣環境，不同意未核准的外送雲端方案。<at id=\"0\">NetworkEngineer</at> 本案例沒有真實客戶資料，也不代表取得任何合規認證；10/27 16:00 前我會交存取撤銷證據。管理畫面勾選不足以當作撤銷有效，必須保留撤銷後存取失敗的測試紀錄。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "NetworkEngineer",
+                    "text": "NetworkEngineer"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          },
+          {
+            "id": "i-post-3",
+            "storyId": "integration-gate",
+            "createdDateTime": "2026-10-23T09:00:00+08:00",
+            "fromRole": "InfoLead",
+            "bodyHtml": "<p>採邊緣去重維持 40 台受控試點，技術條件通過，整合款仍待驗收。<at id=\"0\">DataEngineer</at>、<at id=\"1\">NetworkEngineer</at> 請核對 <a href=\"{{asset:integration-data}}\">觀測台帳</a>：</p><table><thead><tr><th>10 月受控測試</th><th>輸入事件（筆）</th><th>重複隔離（筆）</th><th>可用唯一事件（筆）</th><th>P95（秒）</th><th>探測成功（次/200次）</th></tr></thead><tbody><tr><td>10/21 輪詢基準</td><td>240</td><td>18</td><td>222</td><td>14</td><td>190/200</td></tr><tr><td>10/23 邊緣去重</td><td>240</td><td>3</td><td>237</td><td>6</td><td>198/200</td></tr></tbody></table><p>第二輪 237 可用、3 筆隔離，探測 95% 變 99%，增加 4 個百分點；不承諾 SLA，也不宣稱單一因果。10/27 12:00 芸茹交隔離追蹤，15:00 思妤交切換鍵值，16:00 雅雯交存取撤銷證據。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "DataEngineer",
+                "text": "DataEngineer"
+              },
+              {
+                "id": 1,
+                "role": "NetworkEngineer",
+                "text": "NetworkEngineer"
+              }
+            ],
+            "assetRefs": [
+              "integration-data"
+            ],
+            "replies": [
+              {
+                "id": "i-post-3-reply-1",
+                "storyId": "integration-gate",
+                "createdDateTime": "2026-10-23T09:30:00+08:00",
+                "fromRole": "DataEngineer",
+                "bodyHtml": "<p>第二輪 240 筆輸入與 237 加 3 完全對回，3 筆仍有原鍵可追溯。我會在 10/27 12:00 前交處置，不把隔離刪掉後聲稱全數有效。<at id=\"0\">InfoLead</at> 財務摘要請保留「技術條件通過」與「整合待驗收」兩種狀態，避免只摘錄延遲改善便誤判所有工作結束。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "InfoLead",
+                    "text": "InfoLead"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "i-post-3-reply-2",
+                "storyId": "integration-gate",
+                "createdDateTime": "2026-10-23T10:00:00+08:00",
+                "fromRole": "SecurityLead",
+                "bodyHtml": "<p>我確認外送雲端未進排程，存取撤銷演練仍未完成，期限維持 10/27 16:00。<at id=\"0\">InfoLead</at> 這個缺口必須帶到 10/26 財務會議，不是會後補附件的小事；若撤銷不生效，整合款維持待驗收。技術觀測再好，也不能替代資料邊界與實際存取證據。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "InfoLead",
+                    "text": "InfoLead"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "funding-channel",
+        "displayName": "03 資金閘門",
+        "memberRoles": [
+          "MfgLead",
+          "QualityLead",
+          "ProductionPlanner",
+          "InfoLead",
+          "DataEngineer",
+          "FinanceLead",
+          "Controller",
+          "TelecomLead",
+          "NetworkEngineer",
+          "ProgramLead",
+          "Procurement",
+          "SecurityLead",
+          "Presenter"
+        ],
+        "messages": [
+          {
+            "id": "f-post-1",
+            "storyId": "funding-gate",
+            "createdDateTime": "2026-10-23T14:00:00+08:00",
+            "fromRole": "ProgramLead",
+            "bodyHtml": "<p>三道閘門的最後一關不是把前兩關濃縮成「完成」。品質只放行 A 批 40 台，整合仍缺存取撤銷演練。<at id=\"0\">Procurement</at> 請重整三個驗收包，<at id=\"1\">Controller</at> 請將擬約定與驗收狀態分開。</p><p>早期 120 台一次部署估 720000 元，超過 600000 元上限，不沿用。10/26 會議只討論 40 台試點及付款條件，不把整體計畫名稱當作擴大採購授權。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "Procurement",
+                "text": "Procurement"
+              },
+              {
+                "id": 1,
+                "role": "Controller",
+                "text": "Controller"
+              }
+            ],
+            "assetRefs": [],
+            "replies": [
+              {
+                "id": "f-post-1-reply-1",
+                "storyId": "funding-gate",
+                "createdDateTime": "2026-10-23T14:30:00+08:00",
+                "fromRole": "Procurement",
+                "bodyHtml": "<p>我會用 40 台範圍拆硬體、連線、整合三包，避免把未驗收整合藏進硬體款。<at id=\"0\">ProgramLead</at> 縮小範圍不是價格折扣，所以不拿與 120 台估案的差額宣稱採購績效；各包將標驗收條件、證據 owner 與缺口，不會因有報價就寫成已付款。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "ProgramLead",
+                    "text": "ProgramLead"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "f-post-1-reply-2",
+                "storyId": "funding-gate",
+                "createdDateTime": "2026-10-23T15:00:00+08:00",
+                "fromRole": "Controller",
+                "bodyHtml": "<p>我會保留四個不同口徑：上限、擬約定、證據齊備、待驗收。<at id=\"0\">ProgramLead</at> 證據齊備與待驗收合計才對回約定額，上限內的保留額不能再與它們混加成支出。案例沒有實際付款，財務核准也不能直接代替付款閘門或缺少的撤銷演練。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "ProgramLead",
+                    "text": "ProgramLead"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          },
+          {
+            "id": "f-post-2",
+            "storyId": "funding-gate",
+            "createdDateTime": "2026-10-24T10:00:00+08:00",
+            "fromRole": "Procurement",
+            "bodyHtml": "<p>40 台試點擬約定硬體 240000、連線 96000、整合 144000，新臺幣共 480000 元，距 600000 上限保留 120000 元不動支。<at id=\"0\">Controller</at> 請覆核分包口徑，<at id=\"1\">SecurityLead</at> 請確認整合包的撤銷證據期限。</p><p>硬體與連線資料先交覆核，整合未完成不先簽。10/28 12:00 前依 10/27 演練補包；若未通過，維持待驗收，不用口頭同意補文件的方式跨過閘門。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "Controller",
+                "text": "Controller"
+              },
+              {
+                "id": 1,
+                "role": "SecurityLead",
+                "text": "SecurityLead"
+              }
+            ],
+            "assetRefs": [],
+            "replies": [
+              {
+                "id": "f-post-2-reply-1",
+                "storyId": "funding-gate",
+                "createdDateTime": "2026-10-24T10:30:00+08:00",
+                "fromRole": "SecurityLead",
+                "bodyHtml": "<p>存取撤銷證據期限是 10/27 16:00，目前未完成；我會把成功與未成功的條件寫清楚。<at id=\"0\">Procurement</at> 不能在驗收包先填通過再等測試，若舊存取仍可用，必須維持整合待驗收。這裡沒有實際服務帳密或客戶資料，也不應為教學方便要求把私有設定送到 AI。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "Procurement",
+                    "text": "Procurement"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "f-post-2-reply-2",
+                "storyId": "funding-gate",
+                "createdDateTime": "2026-10-24T11:00:00+08:00",
+                "fromRole": "Controller",
+                "bodyHtml": "<p>480000 與三包加總相符，保留的 120000 是未動支，不是第四個已採購項目。<at id=\"0\">Procurement</at> 我將等到 10/26 核對硬體及連線證據，整合仍保留 144000 待驗收；之後你在 10/28 12:00 補包，我在 17:00 前覆核付款閘門，不會因總額低於上限就自動放行。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "Procurement",
+                    "text": "Procurement"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          },
+          {
+            "id": "f-post-3",
+            "storyId": "funding-gate",
+            "createdDateTime": "2026-10-26T14:00:00+08:00",
+            "fromRole": "FinanceLead",
+            "bodyHtml": "<p>條件核准 40 台受控試點，不核准 120 台全面部署，也不准先付整合款。<at id=\"0\">Controller</at> 與 <at id=\"1\">Procurement</at> 請依 <a href=\"{{asset:budget-data}}\">預算與驗收台帳</a> 保留狀態：</p><table><thead><tr><th>驗收包</th><th>擬約定金額（新臺幣元）</th><th>10/26 證據齊備（元）</th><th>待驗收（元）</th></tr></thead><tbody><tr><td>硬體</td><td>240000</td><td>240000</td><td>0</td></tr><tr><td>連線</td><td>96000</td><td>96000</td><td>0</td></tr><tr><td>整合</td><td>144000</td><td>0</td><td>144000</td></tr></tbody></table><p>擬約定 480000 元中，證據齊備 336000 元、待驗收 144000 元；600000 元上限內保留 120000 元未動支。沒有實際付款。10/27 演練未通過就維持待驗收，10/28 補包與覆核仍為未完成工作。</p>",
+            "mentions": [
+              {
+                "id": 0,
+                "role": "Controller",
+                "text": "Controller"
+              },
+              {
+                "id": 1,
+                "role": "Procurement",
+                "text": "Procurement"
+              }
+            ],
+            "assetRefs": [
+              "budget-data"
+            ],
+            "replies": [
+              {
+                "id": "f-post-3-reply-1",
+                "storyId": "funding-gate",
+                "createdDateTime": "2026-10-26T14:30:00+08:00",
+                "fromRole": "Controller",
+                "bodyHtml": "<p>我接下 10/28 17:00 前付款閘門覆核，前提是 12:00 前收到依演練結果完成的驗收包。<at id=\"0\">FinanceLead</at> 我不會把 336000 證據齊備改寫為已支付，也不把 144000 待驗收從約定總額移除。若證據缺漏，維持未完成並寫明阻擋，不用新的摘要掩蓋依賴。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "FinanceLead",
+                    "text": "FinanceLead"
+                  }
+                ],
+                "assetRefs": []
+              },
+              {
+                "id": "f-post-3-reply-2",
+                "storyId": "funding-gate",
+                "createdDateTime": "2026-10-26T15:00:00+08:00",
+                "fromRole": "ProgramLead",
+                "bodyHtml": "<p>交接已同步三道閘門：40 台試點、237 筆可用事件與 3 筆隔離、480000 元條件核准。<at id=\"0\">FinanceLead</at> 行動清單保留承翰的 2 台原因分析、芸茹的事件追蹤及雅雯撤銷證據；我會分別追 deadline，不把「條件核准」或 Teams 已回覆當作所有事項都結案。</p>",
+                "mentions": [
+                  {
+                    "id": 0,
+                    "role": "FinanceLead",
+                    "text": "FinanceLead"
+                  }
+                ],
+                "assetRefs": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "onedrive": {
+    "drives": [
+      {
+        "id": "presenter-drive",
+        "ownerRole": "Presenter",
+        "assetRefs": [
+          "quality-data"
+        ]
+      }
+    ]
+  },
+  "sharepoint": {
+    "sites": [
+      {
+        "id": "chengliu-site",
+        "displayName": "澄流跨事業群試點（虛構）",
+        "alias": "chengliu-training",
+        "ownerRoles": [
+          "Presenter",
+          "ProgramLead"
+        ],
+        "memberRoles": [
+          "MfgLead",
+          "QualityLead",
+          "ProductionPlanner",
+          "InfoLead",
+          "DataEngineer",
+          "FinanceLead",
+          "Controller",
+          "TelecomLead",
+          "NetworkEngineer",
+          "ProgramLead",
+          "Procurement",
+          "SecurityLead"
+        ],
+        "assetRefs": [
+          "quality-decision",
+          "integration-data",
+          "integration-runbook",
+          "budget-data",
+          "funding-decision"
+        ],
+        "lists": [
+          {
+            "id": "chengliu-actions",
+            "displayName": "澄流行動與閘門",
+            "columns": [
+              {
+                "id": "title",
+                "name": "Title",
+                "type": "text"
+              },
+              {
+                "id": "story",
+                "name": "Story",
+                "type": "text"
+              },
+              {
+                "id": "ownerRole",
+                "name": "OwnerRole",
+                "type": "text"
+              },
+              {
+                "id": "due",
+                "name": "Due",
+                "type": "dateTime"
+              },
+              {
+                "id": "status",
+                "name": "Status",
+                "type": "choice",
+                "choices": [
+                  "進行中",
+                  "待執行",
+                  "待前置",
+                  "完成"
+                ]
+              },
+              {
+                "id": "done",
+                "name": "Done",
+                "type": "boolean"
+              }
+            ],
+            "items": [
+              {
+                "id": "quality-root-cause",
+                "values": {
+                  "title": "2台隔離原因分析，若影響A批立即提重新評估",
+                  "story": "quality-gate",
+                  "ownerRole": "QualityLead",
+                  "due": "2026-10-27T17:00:00+08:00",
+                  "status": "進行中",
+                  "done": false
+                }
+              },
+              {
+                "id": "event-quarantine",
+                "values": {
+                  "title": "3筆隔離事件保留原鍵並交追蹤",
+                  "story": "integration-gate",
+                  "ownerRole": "DataEngineer",
+                  "due": "2026-10-27T12:00:00+08:00",
+                  "status": "進行中",
+                  "done": false
+                }
+              },
+              {
+                "id": "failover-key",
+                "values": {
+                  "title": "切換鍵值複驗，不重新產生事件身分",
+                  "story": "integration-gate",
+                  "ownerRole": "NetworkEngineer",
+                  "due": "2026-10-27T15:00:00+08:00",
+                  "status": "待執行",
+                  "done": false
+                }
+              },
+              {
+                "id": "access-revocation",
+                "values": {
+                  "title": "存取撤銷演練，舊存取必須實際不可用",
+                  "story": "integration-gate",
+                  "ownerRole": "SecurityLead",
+                  "due": "2026-10-27T16:00:00+08:00",
+                  "status": "待執行",
+                  "done": false
+                }
+              },
+              {
+                "id": "acceptance-package",
+                "values": {
+                  "title": "依撤銷演練結果補整合驗收包，未過維持待驗收",
+                  "story": "funding-gate",
+                  "ownerRole": "Procurement",
+                  "due": "2026-10-28T12:00:00+08:00",
+                  "status": "待前置",
+                  "done": false
+                }
+              },
+              {
+                "id": "payment-gate",
+                "values": {
+                  "title": "驗收包齊備後覆核付款閘門；案例沒有實際付款",
+                  "story": "funding-gate",
+                  "ownerRole": "Controller",
+                  "due": "2026-10-28T17:00:00+08:00",
+                  "status": "待前置",
+                  "done": false
+                }
+              }
+            ]
+          },
+          {
+            "id": "chengliu-decisions",
+            "displayName": "澄流決策基準",
+            "columns": [
+              {
+                "id": "title",
+                "name": "Title",
+                "type": "text"
+              },
+              {
+                "id": "story",
+                "name": "Story",
+                "type": "text"
+              },
+              {
+                "id": "decision",
+                "name": "Decision",
+                "type": "text"
+              },
+              {
+                "id": "at",
+                "name": "DecisionAt",
+                "type": "dateTime"
+              }
+            ],
+            "items": [
+              {
+                "id": "quality-decision-row",
+                "values": {
+                  "title": "品質放行不等於全面部署",
+                  "story": "quality-gate",
+                  "decision": "118/120合格；僅A批40台試點，78台合格待排程、2台隔離",
+                  "at": "2026-10-21T09:00:00+08:00"
+                }
+              },
+              {
+                "id": "integration-decision-row",
+                "values": {
+                  "title": "技術條件通過不等於整合驗收",
+                  "story": "integration-gate",
+                  "decision": "240輸入、237可用、3隔離；採邊緣去重；整合付款待撤銷演練",
+                  "at": "2026-10-23T09:00:00+08:00"
+                }
+              },
+              {
+                "id": "funding-decision-row",
+                "values": {
+                  "title": "條件核准不等於付款",
+                  "story": "funding-gate",
+                  "decision": "480000條件核准、336000證據齊備、144000待驗收、120000保留未動支；無實際付款",
+                  "at": "2026-10-26T14:00:00+08:00"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

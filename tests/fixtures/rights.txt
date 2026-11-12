@@ -1,0 +1,2 @@
+These tiny solid-colour JPEGs are generated solely for automated testing.
+No person is depicted. The test artwork is released under CC0-1.0.

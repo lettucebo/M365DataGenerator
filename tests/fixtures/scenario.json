@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0",
+  "scenario": {"id": "test-demo", "title": "Offline training", "locale": "en-US", "anchorDate": "2026-10-30", "timeZone": "Asia/Taipei", "learningObjectives": ["Explain the test"], "personaPackId": "fixture"},
+  "roles": {
+    "Lead": {"personaId": "alice", "businessUnitId": "ops", "responsibility": "Lead"},
+    "Analyst": {"personaId": "bob", "businessUnitId": "ops", "responsibility": "Analyze"}
+  },
+  "stories": [{"id": "story", "title": "A test story", "facts": [{"id": "fact", "text": "Fictional data only."}]}],
+  "assets": [{"id": "metrics", "workbookId": "metrics-book", "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "destination": {"workload": "onedrive", "containerId": "drive", "folder": "Training", "name": "Metrics.xlsx"}}],
+  "workbooks": [{"id": "metrics-book", "sheets": [{"name": "Data", "table": "Metrics", "columns": [{"name": "Label", "type": "string"}, {"name": "Value", "type": "number"}, {"name": "Double", "type": "formula", "formula": "=B{row}*2"}], "rows": [["=not-a-formula", 3, null], ["Second", 4, null]]}]}],
+  "outlook": {"threads": [{"id": "thread", "storyId": "story", "messages": [
+    {"id": "mail-1", "action": "send", "parentId": null, "fromRole": "Lead", "toRoles": ["Analyst"], "ccRoles": ["Presenter"], "subject": "Metrics", "bodyHtml": "<p>Review {{asset:metrics}}</p>", "assetRefs": ["metrics"]},
+    {"id": "mail-2", "action": "reply", "parentId": "mail-1", "fromRole": "Analyst", "toRoles": ["Lead"], "ccRoles": ["Presenter"], "subject": "Re: Metrics", "bodyHtml": "<p><strong>Reviewed.</strong></p>", "assetRefs": []}
+  ]}]},
+  "teams": {"channels": [{"id": "general", "displayName": "General", "memberRoles": ["Lead", "Analyst", "Presenter"], "messages": [
+    {"id": "post", "storyId": "story", "createdDateTime": "2026-10-29T10:00:00+08:00", "fromRole": "Lead", "bodyHtml": "<p><at id=\"0\">Analyst</at> please review.</p>", "mentions": [{"id": 0, "role": "Analyst", "text": "Analyst"}], "assetRefs": [], "replies": [
+      {"id": "reply", "storyId": "story", "createdDateTime": "2026-10-29T11:00:00+08:00", "fromRole": "Analyst", "bodyHtml": "<p>Done.</p>", "mentions": [], "assetRefs": []}
+    ]}
+  ]}]},
+  "onedrive": {"drives": [{"id": "drive", "ownerRole": "Lead", "assetRefs": ["metrics"]}]},
+  "sharepoint": {"sites": [{"id": "site", "displayName": "Training", "alias": "training", "ownerRoles": ["Lead", "Presenter"], "memberRoles": ["Analyst"], "assetRefs": [], "lists": [{"id": "actions", "displayName": "Actions", "columns": [{"id": "title", "name": "Title", "type": "text"}, {"id": "done", "name": "Done", "type": "boolean"}], "items": [{"id": "item-1", "values": {"title": "Review", "done": false}}]}]}]}
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Private config: 1.0 (Managed accounts) or 1.1 (Existing accounts)",
+  "type": "object",
+  "if": {"properties": {"schemaVersion": {"const": "1.1"}}, "required": ["schemaVersion"]},
+  "then": {"$ref": "#/$defs/existingConfig"},
+  "else": {"$ref": "#/$defs/managedConfig"},
+  "$defs": {
+    "guid": {"type": "string", "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"},
+    "upn": {"type": "string", "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"},
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"},
+    "path": {"type": "string", "minLength": 1},
+    "adminAuth": {
+      "type": "object", "additionalProperties": false,
+      "properties": {"clientId": {"$ref": "#/$defs/guid"}, "adminOperatorUpn": {"$ref": "#/$defs/upn"}}
+    },
+    "managedConfig": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "tenantId", "presenterUpn", "clientId", "clientSecretEnvironmentVariable"],
+      "properties": {
+        "schemaVersion": {"const": "1.0"},
+        "tenantId": {"$ref": "#/$defs/guid"}, "clientId": {"$ref": "#/$defs/guid"},
+        "presenterUpn": {"$ref": "#/$defs/upn"},
+        "clientSecretEnvironmentVariable": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
+        "runId": {"$ref": "#/$defs/id"},
+        "personas": {
+          "type": "object", "additionalProperties": false,
+          "required": ["packPath", "instanceId", "accountPrefix", "userDomain", "usageLocation", "bindingPath", "licenseProfiles"],
+          "properties": {
+            "packPath": {"$ref": "#/$defs/path"}, "instanceId": {"$ref": "#/$defs/id"},
+            "accountPrefix": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,19}$"},
+            "userDomain": {"type": "string", "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]*\\.)+[A-Za-z]{2,}$"},
+            "usageLocation": {"type": "string", "pattern": "^[A-Z]{2}$"}, "bindingPath": {"$ref": "#/$defs/path"},
+            "licenseProfiles": {
+              "type": "object", "additionalProperties": false, "minProperties": 1,
+              "patternProperties": {"^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+                "type": "object", "additionalProperties": false, "required": ["skuIds"],
+                "properties": {"skuIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/guid"}}}
+              }}
+            }
+          }
+        },
+        "adminAuth": {"$ref": "#/$defs/adminAuth"}
+      }
+    },
+    "existingConfig": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "tenantId", "presenterUpn", "clientId", "clientSecretEnvironmentVariable"],
+      "properties": {
+        "schemaVersion": {"const": "1.1"},
+        "tenantId": {"$ref": "#/$defs/guid"}, "clientId": {"$ref": "#/$defs/guid"},
+        "presenterUpn": {"$ref": "#/$defs/upn"},
+        "clientSecretEnvironmentVariable": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
+        "runId": {"$ref": "#/$defs/id"},
+        "personas": {
+          "type": "object", "additionalProperties": false,
+          "required": ["accountSource", "packPath", "instanceId", "bindingPath", "accountMappings"],
+          "properties": {
+            "accountSource": {"const": "Existing"},
+            "packPath": {"$ref": "#/$defs/path"}, "instanceId": {"$ref": "#/$defs/id"}, "bindingPath": {"$ref": "#/$defs/path"},
+            "accountMappings": {
+              "type": "object", "additionalProperties": false, "minProperties": 1, "maxProperties": 1000,
+              "patternProperties": {"^[A-Za-z][A-Za-z0-9_-]{0,63}$": {"$ref": "#/$defs/upn"}}
+            }
+          }
+        },
+        "adminAuth": {"$ref": "#/$defs/adminAuth"}
+      }
+    }
+  }
+}

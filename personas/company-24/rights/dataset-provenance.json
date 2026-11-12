@@ -1,0 +1,27 @@
+{
+  "retrievedDate": "2026-10-31",
+  "datasetPage": "https://www.kaggle.com/datasets/selfishgene/synthetic-faces-high-quality-sfhq-part-2",
+  "datasetVersionNumber": 4,
+  "license": {
+    "@type": "CreativeWork",
+    "name": "CC0: Public Domain",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "creator": {
+    "name": "David Beniaguev",
+    "url": "https://www.kaggle.com/selfishgene"
+  },
+  "publisherName": "David Beniaguev (SelfishGene)",
+  "generationSource": "https://github.com/SelfishGene/SFHQ-dataset",
+  "generationReadme": "https://raw.githubusercontent.com/SelfishGene/SFHQ-dataset/main/README.md",
+  "generationReadmeSha256": "d81c0a57848ce1acc266bd4890bb1831436e9dbbc57661620f9dfba581eb264d",
+  "generationStatements": [
+    "- [Part 2](https://www.kaggle.com/datasets/selfishgene/synthetic-faces-high-quality-sfhq-part-2) consists of 91,361 HQ 1024x1024 curated face images. It uses \"inspiration\" images from [Face Synthetics dataset](https://github.com/microsoft/FaceSynthetics) and by sampling from the [Stable Diffusion v1.4](https://github.com/CompVis/stable-diffusion) text to image generator using varied face portrait prompts. ",
+    "    - generated images using [stable diffusion v1.4 model](https://github.com/CompVis/stable-diffusion) using various face portrait prompts that span a wide range of ethnicities, ages, expressions, hairstyles, etc. (part 2)",
+    "1. Each inspiration image was encoded by [encoder4editing (e4e)](https://github.com/omertov/encoder4editing) into [StyleGAN2](https://github.com/NVlabs/stylegan2-ada-pytorch) latent space (StyleGAN2 is a generative face model tained on [FFHQ dataset](https://github.com/NVlabs/ffhq-dataset)) and multiple candidate images were generated from each inspiration image",
+    "Since all images in this dataset are synthetically generated there are no privacy issues or license issues surrounding these images.  "
+  ],
+  "provenanceLimitation": "Publisher describes the dataset pipeline and mixed Part2 inspiration sources; per-image prompt, seed and inspiration-source branch are not supplied. No invented per-image SD prompt/seed.",
+  "codeVsImages": "Repository MIT license covers code; image license is independently declared CC0 in the publisher's Kaggle Dataset JSON-LD.",
+  "access": "Official anonymous API GET; no account, cookies, Authorization header, archive or alternative source. Redirect capability URLs are neither logged nor retained."
+}

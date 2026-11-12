@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.1",
+  "tenantId": "11111111-1111-4111-8111-111111111111",
+  "presenterUpn": "presenter@example.invalid",
+  "clientId": "22222222-2222-4222-8222-222222222222",
+  "clientSecretEnvironmentVariable": "M365_DEMO_CLIENT_SECRET",
+  "personas": {
+    "accountSource": "Existing",
+    "packPath": "personas\\m365-sample\\personas.json",
+    "instanceId": "demo-company",
+    "bindingPath": "private\\demo-company.binding.json",
+    "accountMappings": {
+      "adele-vance": "selected-person-1@example.invalid",
+      "alex-wilber": "selected-person-2@example.invalid",
+      "megan-bowen": "selected-person-3@example.invalid"
+    }
+  },
+  "runId": "demo-course-01"
+}

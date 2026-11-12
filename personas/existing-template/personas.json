@@ -1,0 +1,48 @@
+{
+  "packId": "existing-template",
+  "version": "1.1",
+  "accountSource": "Existing",
+  "company": {
+    "id": "demo-company",
+    "name": "示範公司（虛構）",
+    "industry": "通用示範用虛構企業",
+    "locale": "zh-TW"
+  },
+  "businessUnits": [
+    {
+      "id": "operations",
+      "name": "營運單位"
+    }
+  ],
+  "people": [
+    {
+      "personaId": "demo-lead",
+      "profile": {
+        "jobTitle": "營運主管",
+        "department": "營運單位",
+        "companyName": "示範公司（虛構）",
+        "officeLocation": "示範辦公室"
+      }
+    },
+    {
+      "personaId": "demo-analyst",
+      "profile": {
+        "jobTitle": "營運分析師",
+        "department": "營運單位",
+        "companyName": "示範公司（虛構）",
+        "officeLocation": "示範辦公室"
+      },
+      "managerRef": "demo-lead"
+    },
+    {
+      "personaId": "demo-coordinator",
+      "profile": {
+        "jobTitle": "專案協調員",
+        "department": "營運單位",
+        "companyName": "示範公司（虛構）",
+        "officeLocation": "示範辦公室"
+      },
+      "managerRef": "demo-lead"
+    }
+  ]
+}

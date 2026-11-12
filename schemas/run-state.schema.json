@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Private Run State 1.0",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "runId", "fingerprint", "context", "status", "events", "results"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"}, "runId": {"$ref": "#/$defs/id"}, "fingerprint": {"$ref": "#/$defs/sha"},
+    "context": {
+      "type": "object", "additionalProperties": false,
+      "required": ["tenantId", "clientId", "scenarioId", "personaPackId", "personaPackFingerprint", "instanceId", "bindingFingerprint", "preparedFingerprint", "presenterUpn"],
+      "properties": {
+        "tenantId": {"type": "string", "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"},
+        "clientId": {"type": "string", "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"},
+        "scenarioId": {"$ref": "#/$defs/id"}, "personaPackId": {"$ref": "#/$defs/id"}, "instanceId": {"$ref": "#/$defs/id"},
+        "personaPackFingerprint": {"$ref": "#/$defs/sha"}, "bindingFingerprint": {"$ref": "#/$defs/sha"},
+        "preparedFingerprint": {"$ref": "#/$defs/sha"}, "presenterUpn": {"type": "string", "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"}
+      }
+    },
+    "status": {"enum": ["Planned", "Running", "Completed", "Blocked", "Failed"]},
+    "events": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false, "required": ["sequence", "at", "id", "workload", "action", "status"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0}, "at": {"type": "string", "format": "date-time"},
+        "id": {"$ref": "#/$defs/id"}, "workload": {"$ref": "#/$defs/workload"},
+        "action": {"enum": ["Plan", "Submit", "ReadBack", "Verify", "Block", "Fail"]},
+        "status": {"$ref": "#/$defs/status"}, "objectId": {"type": "string", "minLength": 1},
+        "error": {
+          "type": "object", "additionalProperties": false, "required": ["code", "message"],
+          "properties": {"code": {"type": "string", "minLength": 1}, "message": {"type": "string", "minLength": 1}}
+        }
+      }
+    }},
+    "results": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false, "required": ["id", "workload", "status"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "workload": {"$ref": "#/$defs/workload"},
+        "status": {"$ref": "#/$defs/status"}, "objectId": {"type": "string", "minLength": 1},
+        "evidence": {
+          "type": "object", "additionalProperties": false, "required": ["verifiedAt", "method", "sha256"],
+          "properties": {"verifiedAt": {"type": "string", "format": "date-time"}, "method": {"const": "ReadBack"}, "sha256": {"$ref": "#/$defs/sha"}}
+        }
+      },
+      "if": {"properties": {"status": {"const": "Verified"}}, "required": ["status"]},
+      "then": {"required": ["objectId", "evidence"]}
+    }}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "Completed"}}, "required": ["status"]},
+      "then": {"properties": {"results": {"minItems": 1, "items": {"properties": {"status": {"const": "Verified"}}}}}}
+    },
+    {
+      "if": {"properties": {"results": {"contains": {"properties": {"status": {"enum": ["Partial", "Unknown"]}}, "required": ["status"]}}}},
+      "then": {"properties": {"status": {"const": "Blocked"}}}
+    }
+  ],
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"},
+    "workload": {"enum": ["outlook", "teams", "onedrive", "sharepoint"]},
+    "status": {"enum": ["Planned", "Submitted", "Verified", "Partial", "Unknown", "Failed"]}
+  }
+}

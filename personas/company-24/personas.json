@@ -1,0 +1,612 @@
+{
+  "packId": "company-24",
+  "version": "1.0",
+  "company": {
+    "id": "chencheng",
+    "name": "晨澄實業集團（虛構）",
+    "industry": "製造、資訊、金融營運及電信的虛構多事業群企業",
+    "locale": "zh-TW"
+  },
+  "businessUnits": [
+    {
+      "id": "manufacturing",
+      "name": "智慧製造事業群"
+    },
+    {
+      "id": "information",
+      "name": "資訊服務事業群"
+    },
+    {
+      "id": "finance",
+      "name": "金融營運事業群"
+    },
+    {
+      "id": "telecom",
+      "name": "電信服務事業群"
+    },
+    {
+      "id": "shared",
+      "name": "集團共享服務（非營收 BU）"
+    }
+  ],
+  "people": [
+    {
+      "personaId": "mfg-yating",
+      "alias": "lin-yating",
+      "displayName": "林雅庭",
+      "jobTitle": "智慧製造事業群總經理",
+      "department": "智慧製造事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺中示範辦公室",
+      "managerRef": "shared-bowen",
+      "avatarAssetId": "mfg-yating-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "mfg-chenghan",
+      "alias": "chen-chenghan",
+      "displayName": "陳承翰",
+      "jobTitle": "製程品質經理",
+      "department": "智慧製造事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺中示範辦公室",
+      "managerRef": "mfg-yating",
+      "avatarAssetId": "mfg-chenghan-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "mfg-yijun",
+      "alias": "huang-yijun",
+      "displayName": "黃怡君",
+      "jobTitle": "生產規劃經理",
+      "department": "智慧製造事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺中示範辦公室",
+      "managerRef": "mfg-yating",
+      "avatarAssetId": "mfg-yijun-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "mfg-junwei",
+      "alias": "wu-junwei",
+      "displayName": "吳俊緯",
+      "jobTitle": "設備整合工程師",
+      "department": "智慧製造事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺中示範辦公室",
+      "managerRef": "mfg-yating",
+      "avatarAssetId": "mfg-junwei-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "mfg-xinyi",
+      "alias": "zhou-xinyi",
+      "displayName": "周欣怡",
+      "jobTitle": "供應鏈專案專員",
+      "department": "智慧製造事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺中示範辦公室",
+      "managerRef": "mfg-yating",
+      "avatarAssetId": "mfg-xinyi-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "it-ziqian",
+      "alias": "zhang-ziqian",
+      "displayName": "張子謙",
+      "jobTitle": "資訊服務事業群總經理",
+      "department": "資訊服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "shared-bowen",
+      "avatarAssetId": "it-ziqian-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "it-yunru",
+      "alias": "xu-yunru",
+      "displayName": "許芸茹",
+      "jobTitle": "資料工程師",
+      "department": "資訊服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "it-ziqian",
+      "avatarAssetId": "it-yunru-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "it-guanlin",
+      "alias": "guo-guanlin",
+      "displayName": "郭冠霖",
+      "jobTitle": "應用系統架構師",
+      "department": "資訊服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "it-ziqian",
+      "avatarAssetId": "it-guanlin-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "it-peishan",
+      "alias": "luo-peishan",
+      "displayName": "羅珮珊",
+      "jobTitle": "服務交付經理",
+      "department": "資訊服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "it-ziqian",
+      "avatarAssetId": "it-peishan-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "it-zhenyu",
+      "alias": "ye-zhenyu",
+      "displayName": "葉振宇",
+      "jobTitle": "測試自動化工程師",
+      "department": "資訊服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "it-ziqian",
+      "avatarAssetId": "it-zhenyu-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "fin-huiling",
+      "alias": "liu-huiling",
+      "displayName": "劉慧玲",
+      "jobTitle": "金融營運事業群總經理",
+      "department": "金融營運事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "shared-bowen",
+      "avatarAssetId": "fin-huiling-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "fin-yuchen",
+      "alias": "tsai-yuchen",
+      "displayName": "蔡昱辰",
+      "jobTitle": "財務控制經理",
+      "department": "金融營運事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "fin-huiling",
+      "avatarAssetId": "fin-yuchen-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "fin-jingwen",
+      "alias": "zheng-jingwen",
+      "displayName": "鄭靜雯",
+      "jobTitle": "風險分析師",
+      "department": "金融營運事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "fin-huiling",
+      "avatarAssetId": "fin-jingwen-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "fin-shaoyu",
+      "alias": "xie-shaoyu",
+      "displayName": "謝紹宇",
+      "jobTitle": "管理會計分析師",
+      "department": "金融營運事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "fin-huiling",
+      "avatarAssetId": "fin-shaoyu-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "fin-yiting",
+      "alias": "he-yiting",
+      "displayName": "何宜庭",
+      "jobTitle": "營運稽核專員",
+      "department": "金融營運事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "fin-huiling",
+      "avatarAssetId": "fin-yiting-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "tel-guanwei",
+      "alias": "yang-guanwei",
+      "displayName": "楊冠維",
+      "jobTitle": "電信服務事業群總經理",
+      "department": "電信服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "高雄示範辦公室",
+      "managerRef": "shared-bowen",
+      "avatarAssetId": "tel-guanwei-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "tel-siyu",
+      "alias": "su-siyu",
+      "displayName": "蘇思妤",
+      "jobTitle": "網路可靠性工程師",
+      "department": "電信服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "高雄示範辦公室",
+      "managerRef": "tel-guanwei",
+      "avatarAssetId": "tel-siyu-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "tel-jiahao",
+      "alias": "deng-jiahao",
+      "displayName": "鄧家豪",
+      "jobTitle": "企業網路方案經理",
+      "department": "電信服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "高雄示範辦公室",
+      "managerRef": "tel-guanwei",
+      "avatarAssetId": "tel-jiahao-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "tel-yuxuan",
+      "alias": "shen-yuxuan",
+      "displayName": "沈宇軒",
+      "jobTitle": "服務營運分析師",
+      "department": "電信服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "高雄示範辦公室",
+      "managerRef": "tel-guanwei",
+      "avatarAssetId": "tel-yuxuan-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "tel-wanqing",
+      "alias": "jiang-wanqing",
+      "displayName": "江婉晴",
+      "jobTitle": "客戶成功經理",
+      "department": "電信服務事業群",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "高雄示範辦公室",
+      "managerRef": "tel-guanwei",
+      "avatarAssetId": "tel-wanqing-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "shared-bowen",
+      "alias": "song-bowen",
+      "displayName": "宋博文",
+      "jobTitle": "集團執行長",
+      "department": "集團共享服務（非營收 BU）",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": null,
+      "avatarAssetId": "shared-bowen-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "shared-ruoning",
+      "alias": "liang-ruoning",
+      "displayName": "梁若寧",
+      "jobTitle": "集團專案管理經理",
+      "department": "集團共享服務（非營收 BU）",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "shared-bowen",
+      "avatarAssetId": "shared-ruoning-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "shared-yijie",
+      "alias": "fang-yijie",
+      "displayName": "方奕傑",
+      "jobTitle": "集團採購經理",
+      "department": "集團共享服務（非營收 BU）",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "shared-bowen",
+      "avatarAssetId": "shared-yijie-portrait",
+      "licenseProfile": "m365-demo"
+    },
+    {
+      "personaId": "shared-yawen",
+      "alias": "tang-yawen",
+      "displayName": "唐雅雯",
+      "jobTitle": "集團資訊安全經理",
+      "department": "集團共享服務（非營收 BU）",
+      "companyName": "晨澄實業集團（虛構）",
+      "officeLocation": "臺北示範辦公室",
+      "managerRef": "shared-bowen",
+      "avatarAssetId": "shared-yawen-portrait",
+      "licenseProfile": "m365-demo"
+    }
+  ],
+  "avatarAssets": [
+    {
+      "id": "mfg-yating-portrait",
+      "path": "avatars\\mfg-yating.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "34841805de0ba7c76698bc789fa6ceb5a59f05e2f3a0f41e2c1c8af49a91aad4",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000003.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\mfg-yating.txt"
+      }
+    },
+    {
+      "id": "mfg-chenghan-portrait",
+      "path": "avatars\\mfg-chenghan.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "bd09505bd8301124f5bf5e71c303d860b8e7ec332e52cfdccfa7fdf34b3aded5",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000004.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\mfg-chenghan.txt"
+      }
+    },
+    {
+      "id": "mfg-yijun-portrait",
+      "path": "avatars\\mfg-yijun.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "d46f97255f853a86b1c4dcaf62080eb536c535053d13199a887e2bafad7cf293",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000014.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\mfg-yijun.txt"
+      }
+    },
+    {
+      "id": "mfg-junwei-portrait",
+      "path": "avatars\\mfg-junwei.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "ab55891084f46114ae0f3820ac6fe592b45e282d2148946486722ee8864e6279",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000022.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\mfg-junwei.txt"
+      }
+    },
+    {
+      "id": "mfg-xinyi-portrait",
+      "path": "avatars\\mfg-xinyi.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "d28dd358d342140f6e05d2973251afcc6d1cecfc0ab617350f554a766b8109bb",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000034.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\mfg-xinyi.txt"
+      }
+    },
+    {
+      "id": "it-ziqian-portrait",
+      "path": "avatars\\it-ziqian.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "07c0c925ba718decbc2f5ade9b332f42b3d377cf397adcb4485b288579f29522",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000046.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\it-ziqian.txt"
+      }
+    },
+    {
+      "id": "it-yunru-portrait",
+      "path": "avatars\\it-yunru.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "ecb9bfb69e5ed5a4b996f160f9182e6ef7aec82c316f11fad2b07fcdef7635b9",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000072.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\it-yunru.txt"
+      }
+    },
+    {
+      "id": "it-guanlin-portrait",
+      "path": "avatars\\it-guanlin.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "a3cb8625e01a47fa5005775a82b0bad9700d07ee2a510db150cf2461a90cebb3",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000081.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\it-guanlin.txt"
+      }
+    },
+    {
+      "id": "it-peishan-portrait",
+      "path": "avatars\\it-peishan.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "693c6164f6c991bfe8b81e35e40945f81cac0eefe4d62d6f40546eaefdc3504d",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000086.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\it-peishan.txt"
+      }
+    },
+    {
+      "id": "it-zhenyu-portrait",
+      "path": "avatars\\it-zhenyu.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "71d8d9e2c561ab6cb2b39be3f3b7f87687a15bc7903bb9603c41f97ccae4450f",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000088.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\it-zhenyu.txt"
+      }
+    },
+    {
+      "id": "fin-huiling-portrait",
+      "path": "avatars\\fin-huiling.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "e77f985c4337e6a3cfeaca4dc3ad7ea5cda9aa82d8a19f081d651b230511d384",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000093.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\fin-huiling.txt"
+      }
+    },
+    {
+      "id": "fin-yuchen-portrait",
+      "path": "avatars\\fin-yuchen.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "481a72481f537c094d9178738d507b8a86ed99ba3b6deb29d862ccf5b833198e",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000096.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\fin-yuchen.txt"
+      }
+    },
+    {
+      "id": "fin-jingwen-portrait",
+      "path": "avatars\\fin-jingwen.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "452a39aae9f9c349bef8baf810e63ec95b09e2fbdb4188e0a1bbdd7028ace2f2",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000099.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\fin-jingwen.txt"
+      }
+    },
+    {
+      "id": "fin-shaoyu-portrait",
+      "path": "avatars\\fin-shaoyu.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "55028e9e56ad7671d93250cf8e264869a5f74a9d7172c07cd77a721750a1df89",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000132.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\fin-shaoyu.txt"
+      }
+    },
+    {
+      "id": "fin-yiting-portrait",
+      "path": "avatars\\fin-yiting.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "34c88e7ff5353f26ad2e9c0bff2b7ed346491d89f9d99dfe7e87b027f0d0b660",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000140.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\fin-yiting.txt"
+      }
+    },
+    {
+      "id": "tel-guanwei-portrait",
+      "path": "avatars\\tel-guanwei.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "2ec982cd5366556689b981ec3da95fbb6ce46c824919b85894ae9591807b2dcb",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000150.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\tel-guanwei.txt"
+      }
+    },
+    {
+      "id": "tel-siyu-portrait",
+      "path": "avatars\\tel-siyu.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "1b39a7829dcc4ad36d876b4ae1aa860eb5cc4364574aaf6eba977b021a1298e1",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000162.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\tel-siyu.txt"
+      }
+    },
+    {
+      "id": "tel-jiahao-portrait",
+      "path": "avatars\\tel-jiahao.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "c61ea8b904cf93d967081e335f2dc5fb8c831f9ba9f5b622ea36aa8932b40972",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000166.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\tel-jiahao.txt"
+      }
+    },
+    {
+      "id": "tel-yuxuan-portrait",
+      "path": "avatars\\tel-yuxuan.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "2d46e426c70d05610d22af08a65f7dfc5a60bad48726b7a6ac4d04f646994479",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000170.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\tel-yuxuan.txt"
+      }
+    },
+    {
+      "id": "tel-wanqing-portrait",
+      "path": "avatars\\tel-wanqing.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "4bd226d8f4406653d655a3c86b887bd5fdebcd4e0b3e8f7b1a16055bdd8f578a",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000191.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\tel-wanqing.txt"
+      }
+    },
+    {
+      "id": "shared-bowen-portrait",
+      "path": "avatars\\shared-bowen.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "5f023b30755a2585ae5b6dfc0fc829c06f821d734ca01f2506f0d662b4d475ce",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000207.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\shared-bowen.txt"
+      }
+    },
+    {
+      "id": "shared-ruoning-portrait",
+      "path": "avatars\\shared-ruoning.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "350a8eda7a13fdc3e91cecf3892fdaf1eb7abf1419114b68c258f7055d57a604",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000210.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\shared-ruoning.txt"
+      }
+    },
+    {
+      "id": "shared-yijie-portrait",
+      "path": "avatars\\shared-yijie.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "60664dc9c68412e8e6a9f8028b092f6bcdcb6c6156b38126295ab9d3e720ea83",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000258.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\shared-yijie.txt"
+      }
+    },
+    {
+      "id": "shared-yawen-portrait",
+      "path": "avatars\\shared-yawen.jpg",
+      "mediaType": "image/jpeg",
+      "sha256": "5fb519641881672b175ff9ea99bdcbd4129c7a55339314c162e2b246ab0c1e78",
+      "rights": {
+        "license": "CC0-1.0",
+        "source": "https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000262.jpg",
+        "attribution": "SFHQ Part 2 — David Beniaguev (SelfishGene), CC0 1.0. Resized to RGB 512×512 by M365DataGenerator.",
+        "evidencePath": "rights\\shared-yawen.txt"
+      }
+    }
+  ]
+}

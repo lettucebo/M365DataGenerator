@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scenario 1.0",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "scenario", "roles", "stories", "assets"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "scenario": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "title", "locale", "anchorDate", "timeZone", "learningObjectives", "personaPackId"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "title": {"$ref": "#/$defs/text"}, "locale": {"$ref": "#/$defs/text"},
+        "anchorDate": {"type": "string", "format": "date"}, "timeZone": {"$ref": "#/$defs/text"},
+        "learningObjectives": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+        "personaPackId": {"$ref": "#/$defs/id"}
+      }
+    },
+    "roles": {
+      "type": "object", "additionalProperties": false, "minProperties": 1,
+      "propertyNames": {"not": {"const": "Presenter"}},
+      "patternProperties": {"^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+        "type": "object", "additionalProperties": false, "required": ["personaId", "businessUnitId", "responsibility"],
+        "properties": {"personaId": {"$ref": "#/$defs/id"}, "businessUnitId": {"$ref": "#/$defs/id"}, "responsibility": {"$ref": "#/$defs/text"}}
+      }}
+    },
+    "stories": {"type": "array", "minItems": 1, "items": {
+      "type": "object", "additionalProperties": false, "required": ["id", "title", "facts"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "title": {"$ref": "#/$defs/text"},
+        "facts": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "additionalProperties": false, "required": ["id", "text"],
+          "properties": {"id": {"$ref": "#/$defs/id"}, "text": {"$ref": "#/$defs/text"}}
+        }}
+      }
+    }},
+    "assets": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+    "workbooks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/workbook"}},
+    "outlook": {
+      "type": "object", "additionalProperties": false, "required": ["threads"],
+      "properties": {"threads": {"type": "array", "minItems": 1, "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "storyId", "messages"],
+        "properties": {"id": {"$ref": "#/$defs/id"}, "storyId": {"$ref": "#/$defs/id"}, "messages": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/mail"}}}
+      }}}
+    },
+    "teams": {
+      "type": "object", "additionalProperties": false, "required": ["channels"],
+      "properties": {"channels": {"type": "array", "minItems": 1, "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "displayName", "memberRoles", "messages"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"}, "displayName": {"$ref": "#/$defs/text"}, "memberRoles": {"$ref": "#/$defs/roles"},
+          "messages": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/post"}}
+        }
+      }}}
+    },
+    "onedrive": {
+      "type": "object", "additionalProperties": false, "required": ["drives"],
+      "properties": {"drives": {"type": "array", "minItems": 1, "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "ownerRole", "assetRefs"],
+        "properties": {"id": {"$ref": "#/$defs/id"}, "ownerRole": {"$ref": "#/$defs/id"}, "assetRefs": {"$ref": "#/$defs/refs"}}
+      }}}
+    },
+    "sharepoint": {
+      "type": "object", "additionalProperties": false, "required": ["sites"],
+      "properties": {"sites": {"type": "array", "minItems": 1, "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "displayName", "alias", "ownerRoles", "memberRoles", "assetRefs", "lists"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"}, "displayName": {"$ref": "#/$defs/text"}, "alias": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$"},
+          "ownerRoles": {"$ref": "#/$defs/roles"}, "memberRoles": {"$ref": "#/$defs/refs"},
+          "assetRefs": {"$ref": "#/$defs/refs"}, "lists": {"type": "array", "items": {"$ref": "#/$defs/list"}}
+        }
+      }}}
+    }
+  },
+  "anyOf": [{"required": ["outlook"]}, {"required": ["teams"]}, {"required": ["onedrive"]}, {"required": ["sharepoint"]}],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"},
+    "text": {"type": "string", "minLength": 1, "maxLength": 65536},
+    "refs": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "roles": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "asset": {
+      "type": "object", "additionalProperties": false, "required": ["id", "mediaType", "destination"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "localPath": {"$ref": "#/$defs/text"}, "sha256": {"$ref": "#/$defs/sha"}, "workbookId": {"$ref": "#/$defs/id"},
+        "mediaType": {"enum": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf", "text/plain", "image/jpeg"]},
+        "destination": {
+          "type": "object", "additionalProperties": false, "required": ["workload", "containerId", "folder", "name"],
+          "properties": {"workload": {"enum": ["onedrive", "sharepoint"]}, "containerId": {"$ref": "#/$defs/id"}, "folder": {"$ref": "#/$defs/text"}, "name": {"$ref": "#/$defs/text"}}
+        }
+      },
+      "oneOf": [
+        {"required": ["localPath", "sha256"], "not": {"required": ["workbookId"]}},
+        {"required": ["workbookId"], "not": {"anyOf": [{"required": ["localPath"]}, {"required": ["sha256"]}]}, "properties": {"mediaType": {"const": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}}}
+      ]
+    },
+    "mail": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "action", "parentId", "fromRole", "toRoles", "ccRoles", "subject", "bodyHtml", "assetRefs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "action": {"enum": ["send", "reply"]}, "parentId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+        "fromRole": {"$ref": "#/$defs/id"}, "toRoles": {"$ref": "#/$defs/roles"}, "ccRoles": {"$ref": "#/$defs/refs"},
+        "subject": {"$ref": "#/$defs/text"}, "bodyHtml": {"$ref": "#/$defs/text"}, "assetRefs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "mention": {
+      "type": "object", "additionalProperties": false, "required": ["id", "role", "text"],
+      "properties": {"id": {"type": "integer", "minimum": 0}, "role": {"$ref": "#/$defs/id"}, "text": {"$ref": "#/$defs/text"}}
+    },
+    "reply": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "storyId", "createdDateTime", "fromRole", "bodyHtml", "mentions", "assetRefs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "storyId": {"$ref": "#/$defs/id"}, "createdDateTime": {"type": "string", "format": "date-time"},
+        "fromRole": {"$ref": "#/$defs/id"}, "bodyHtml": {"$ref": "#/$defs/text"},
+        "mentions": {"type": "array", "items": {"$ref": "#/$defs/mention"}}, "assetRefs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "post": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "storyId", "createdDateTime", "fromRole", "bodyHtml", "mentions", "assetRefs", "replies"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "storyId": {"$ref": "#/$defs/id"}, "createdDateTime": {"type": "string", "format": "date-time"},
+        "fromRole": {"$ref": "#/$defs/id"}, "bodyHtml": {"$ref": "#/$defs/text"},
+        "mentions": {"type": "array", "items": {"$ref": "#/$defs/mention"}}, "assetRefs": {"$ref": "#/$defs/refs"},
+        "replies": {"type": "array", "items": {"$ref": "#/$defs/reply"}}
+      }
+    },
+    "column": {
+      "type": "object", "additionalProperties": false, "required": ["name", "type"],
+      "properties": {"name": {"type": "string", "minLength": 1, "maxLength": 255}, "type": {"enum": ["string", "number", "integer", "boolean", "formula"]}, "formula": {"type": "string", "pattern": "^="}},
+      "if": {"properties": {"type": {"const": "formula"}}, "required": ["type"]},
+      "then": {"required": ["formula"]}, "else": {"not": {"required": ["formula"]}}
+    },
+    "workbook": {
+      "type": "object", "additionalProperties": false, "required": ["id", "sheets"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "sheets": {"type": "array", "minItems": 1, "maxItems": 32, "items": {
+          "type": "object", "additionalProperties": false, "required": ["name", "table", "columns"],
+          "properties": {
+            "name": {"type": "string", "minLength": 1, "maxLength": 31}, "table": {"type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,63}$"},
+            "columns": {"type": "array", "minItems": 1, "maxItems": 100, "items": {"$ref": "#/$defs/column"}},
+            "rows": {"type": "array", "minItems": 1, "maxItems": 10000, "items": {"type": "array", "items": {"type": ["string", "number", "boolean", "null"]}}},
+            "generate": {
+              "type": "object", "additionalProperties": false, "required": ["seed", "dimensions", "periods", "min", "max", "overrides"],
+              "properties": {
+                "seed": {"type": "integer"}, "dimensions": {"type": "array", "minItems": 1, "maxItems": 100, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+                "periods": {"type": "array", "minItems": 1, "maxItems": 100, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+                "min": {"type": "integer"}, "max": {"type": "integer"},
+                "overrides": {"type": "array", "items": {
+                  "type": "object", "additionalProperties": false, "required": ["dimension", "period", "value"],
+                  "properties": {"dimension": {"$ref": "#/$defs/text"}, "period": {"$ref": "#/$defs/text"}, "value": {"type": "integer"}}
+                }}
+              }
+            }
+          },
+          "oneOf": [{"required": ["rows"], "not": {"required": ["generate"]}}, {"required": ["generate"], "not": {"required": ["rows"]}}]
+        }}
+      }
+    },
+    "list": {
+      "type": "object", "additionalProperties": false, "required": ["id", "displayName", "columns", "items"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "displayName": {"$ref": "#/$defs/text"},
+        "columns": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "additionalProperties": false, "required": ["id", "name", "type"],
+          "properties": {"id": {"$ref": "#/$defs/id"}, "name": {"$ref": "#/$defs/text"}, "type": {"enum": ["text", "number", "integer", "boolean", "dateTime", "choice"]}, "choices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}}},
+          "if": {"properties": {"type": {"const": "choice"}}, "required": ["type"]},
+          "then": {"required": ["choices"]}, "else": {"not": {"required": ["choices"]}}
+        }},
+        "items": {"type": "array", "items": {
+          "type": "object", "additionalProperties": false, "required": ["id", "values"],
+          "properties": {
+            "id": {"$ref": "#/$defs/id"},
+            "values": {"type": "object", "additionalProperties": false, "patternProperties": {"^[A-Za-z][A-Za-z0-9_-]{0,63}$": {"type": ["string", "number", "boolean"]}}}
+          }
+        }}
+      }
+    }
+  }
+}

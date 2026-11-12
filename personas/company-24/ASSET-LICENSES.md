@@ -1,0 +1,57 @@
+# Portrait asset licenses — company-24
+
+All 24 JPEG portraits are processed derivatives of **SFHQ Part2 version 4** small-sample files.
+Image license: **CC0-1.0 / CC0 1.0 Universal**, independently declared by publisher David Beniaguev (SelfishGene).
+This is separate from the repository's MIT **code** license. No image is relabeled MIT.
+
+- Primary image-license declaration: https://www.kaggle.com/datasets/selfishgene/synthetic-faces-high-quality-sfhq-part-2
+- License: https://creativecommons.org/publicdomain/zero/1.0/
+- Generation provenance: https://github.com/SelfishGene/SFHQ-dataset
+- Primary generation README: https://raw.githubusercontent.com/SelfishGene/SFHQ-dataset/main/README.md
+- Verified 2026-10-31: publisher Dataset JSON-LD `license.name` is `CC0: Public Domain`, with the CC0 URL above.
+- CC0 does not require attribution; source credits and changes are retained voluntarily.
+- Official anonymous listing and per-file GET only; no account, cookie, credential, archive or alternative source.
+- Sources below are permanent official API request URLs, not temporary signed storage redirects.
+
+## Generation and visual scope
+
+Publisher documents SFHQ Part2 as synthetic, using Face Synthetics and Stable Diffusion v1.4 varied portrait inspirations, encoded through e4e into StyleGAN2 and curated. Individual prompt, seed and inspiration branch are not supplied.
+The publisher describes all dataset images as synthetically generated. This is dataset-level provenance for each exact file, not a fabricated per-image SD prompt or seed.
+All selected images were visually screened as distinct adult-presenting, photorealistic neutral headshots; no child-like, fantasy, nonhuman, uniform/costume or obviously low-quality image was selected.
+Persona assignment is fictional casting, not real-person identification or inference of sensitive traits. Source bias and possible resemblance are not ruled out by a hash or visual review.
+Independent parent visual review and live tenant/UI readiness are separate gates.
+
+## Processing
+
+Each square 1024×1024 source was resized in full (no crop) to a fresh RGB 512×512 JPEG using existing Pillow LANCZOS, quality 92, subsampling 0 and optimize=true. No retouch, image generation or EXIF/source metadata was copied.
+Only these 24 processed final JPEGs are shipped under `avatars`; original candidates remain outside the repository in the session curation folder.
+Exact original and final hashes, generation/rights evidence and voluntary attribution are in each `rights\<personaId>.txt` and `portrait-rights-manifest.json`.
+
+## Per-file source / license index
+
+| personaId / processed file | Exact version-4 source | Final SHA-256 | Rights evidence |
+|---|---|---|---|
+| `mfg-yating` / `avatars\mfg-yating.jpg` | [SFHQ_pt2_00000003.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000003.jpg) — CC0-1.0 | `34841805de0ba7c76698bc789fa6ceb5a59f05e2f3a0f41e2c1c8af49a91aad4` | `rights\mfg-yating.txt` |
+| `mfg-chenghan` / `avatars\mfg-chenghan.jpg` | [SFHQ_pt2_00000004.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000004.jpg) — CC0-1.0 | `bd09505bd8301124f5bf5e71c303d860b8e7ec332e52cfdccfa7fdf34b3aded5` | `rights\mfg-chenghan.txt` |
+| `mfg-yijun` / `avatars\mfg-yijun.jpg` | [SFHQ_pt2_00000014.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000014.jpg) — CC0-1.0 | `d46f97255f853a86b1c4dcaf62080eb536c535053d13199a887e2bafad7cf293` | `rights\mfg-yijun.txt` |
+| `mfg-junwei` / `avatars\mfg-junwei.jpg` | [SFHQ_pt2_00000022.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000022.jpg) — CC0-1.0 | `ab55891084f46114ae0f3820ac6fe592b45e282d2148946486722ee8864e6279` | `rights\mfg-junwei.txt` |
+| `mfg-xinyi` / `avatars\mfg-xinyi.jpg` | [SFHQ_pt2_00000034.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000034.jpg) — CC0-1.0 | `d28dd358d342140f6e05d2973251afcc6d1cecfc0ab617350f554a766b8109bb` | `rights\mfg-xinyi.txt` |
+| `it-ziqian` / `avatars\it-ziqian.jpg` | [SFHQ_pt2_00000046.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000046.jpg) — CC0-1.0 | `07c0c925ba718decbc2f5ade9b332f42b3d377cf397adcb4485b288579f29522` | `rights\it-ziqian.txt` |
+| `it-yunru` / `avatars\it-yunru.jpg` | [SFHQ_pt2_00000072.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000072.jpg) — CC0-1.0 | `ecb9bfb69e5ed5a4b996f160f9182e6ef7aec82c316f11fad2b07fcdef7635b9` | `rights\it-yunru.txt` |
+| `it-guanlin` / `avatars\it-guanlin.jpg` | [SFHQ_pt2_00000081.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000081.jpg) — CC0-1.0 | `a3cb8625e01a47fa5005775a82b0bad9700d07ee2a510db150cf2461a90cebb3` | `rights\it-guanlin.txt` |
+| `it-peishan` / `avatars\it-peishan.jpg` | [SFHQ_pt2_00000086.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000086.jpg) — CC0-1.0 | `693c6164f6c991bfe8b81e35e40945f81cac0eefe4d62d6f40546eaefdc3504d` | `rights\it-peishan.txt` |
+| `it-zhenyu` / `avatars\it-zhenyu.jpg` | [SFHQ_pt2_00000088.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000088.jpg) — CC0-1.0 | `71d8d9e2c561ab6cb2b39be3f3b7f87687a15bc7903bb9603c41f97ccae4450f` | `rights\it-zhenyu.txt` |
+| `fin-huiling` / `avatars\fin-huiling.jpg` | [SFHQ_pt2_00000093.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000093.jpg) — CC0-1.0 | `e77f985c4337e6a3cfeaca4dc3ad7ea5cda9aa82d8a19f081d651b230511d384` | `rights\fin-huiling.txt` |
+| `fin-yuchen` / `avatars\fin-yuchen.jpg` | [SFHQ_pt2_00000096.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000096.jpg) — CC0-1.0 | `481a72481f537c094d9178738d507b8a86ed99ba3b6deb29d862ccf5b833198e` | `rights\fin-yuchen.txt` |
+| `fin-jingwen` / `avatars\fin-jingwen.jpg` | [SFHQ_pt2_00000099.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000099.jpg) — CC0-1.0 | `452a39aae9f9c349bef8baf810e63ec95b09e2fbdb4188e0a1bbdd7028ace2f2` | `rights\fin-jingwen.txt` |
+| `fin-shaoyu` / `avatars\fin-shaoyu.jpg` | [SFHQ_pt2_00000132.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000132.jpg) — CC0-1.0 | `55028e9e56ad7671d93250cf8e264869a5f74a9d7172c07cd77a721750a1df89` | `rights\fin-shaoyu.txt` |
+| `fin-yiting` / `avatars\fin-yiting.jpg` | [SFHQ_pt2_00000140.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000140.jpg) — CC0-1.0 | `34c88e7ff5353f26ad2e9c0bff2b7ed346491d89f9d99dfe7e87b027f0d0b660` | `rights\fin-yiting.txt` |
+| `tel-guanwei` / `avatars\tel-guanwei.jpg` | [SFHQ_pt2_00000150.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000150.jpg) — CC0-1.0 | `2ec982cd5366556689b981ec3da95fbb6ce46c824919b85894ae9591807b2dcb` | `rights\tel-guanwei.txt` |
+| `tel-siyu` / `avatars\tel-siyu.jpg` | [SFHQ_pt2_00000162.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000162.jpg) — CC0-1.0 | `1b39a7829dcc4ad36d876b4ae1aa860eb5cc4364574aaf6eba977b021a1298e1` | `rights\tel-siyu.txt` |
+| `tel-jiahao` / `avatars\tel-jiahao.jpg` | [SFHQ_pt2_00000166.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000166.jpg) — CC0-1.0 | `c61ea8b904cf93d967081e335f2dc5fb8c831f9ba9f5b622ea36aa8932b40972` | `rights\tel-jiahao.txt` |
+| `tel-yuxuan` / `avatars\tel-yuxuan.jpg` | [SFHQ_pt2_00000170.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000170.jpg) — CC0-1.0 | `2d46e426c70d05610d22af08a65f7dfc5a60bad48726b7a6ac4d04f646994479` | `rights\tel-yuxuan.txt` |
+| `tel-wanqing` / `avatars\tel-wanqing.jpg` | [SFHQ_pt2_00000191.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000191.jpg) — CC0-1.0 | `4bd226d8f4406653d655a3c86b887bd5fdebcd4e0b3e8f7b1a16055bdd8f578a` | `rights\tel-wanqing.txt` |
+| `shared-bowen` / `avatars\shared-bowen.jpg` | [SFHQ_pt2_00000207.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000207.jpg) — CC0-1.0 | `5f023b30755a2585ae5b6dfc0fc829c06f821d734ca01f2506f0d662b4d475ce` | `rights\shared-bowen.txt` |
+| `shared-ruoning` / `avatars\shared-ruoning.jpg` | [SFHQ_pt2_00000210.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000210.jpg) — CC0-1.0 | `350a8eda7a13fdc3e91cecf3892fdaf1eb7abf1419114b68c258f7055d57a604` | `rights\shared-ruoning.txt` |
+| `shared-yijie` / `avatars\shared-yijie.jpg` | [SFHQ_pt2_00000258.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000258.jpg) — CC0-1.0 | `60664dc9c68412e8e6a9f8028b092f6bcdcb6c6156b38126295ab9d3e720ea83` | `rights\shared-yijie.txt` |
+| `shared-yawen` / `avatars\shared-yawen.jpg` | [SFHQ_pt2_00000262.jpg](https://www.kaggle.com/api/v1/datasets/download/selfishgene/synthetic-faces-high-quality-sfhq-part-2?datasetVersionNumber=4&fileName=a+small+sample+%28650+images%29%2FSFHQ_pt2_00000262.jpg) — CC0-1.0 | `5fb519641881672b175ff9ea99bdcbd4129c7a55339314c162e2b246ab0c1e78` | `rights\shared-yawen.txt` |

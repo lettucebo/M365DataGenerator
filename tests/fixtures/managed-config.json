@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0",
+  "tenantId": "11111111-1111-4111-8111-111111111111",
+  "presenterUpn": "presenter@example.invalid",
+  "clientId": "22222222-2222-4222-8222-222222222222",
+  "clientSecretEnvironmentVariable": "M365_DEMO_CLIENT_SECRET",
+  "personas": {
+    "packPath": "personas\\company-24\\personas.json",
+    "instanceId": "training01",
+    "accountPrefix": "demo-",
+    "userDomain": "example.invalid",
+    "usageLocation": "TW",
+    "bindingPath": "private\\training01.binding.json",
+    "licenseProfiles": {
+      "m365-demo": {"skuIds": ["33333333-3333-4333-8333-333333333333"]},
+      "standard": {"skuIds": ["33333333-3333-4333-8333-333333333333"]}
+    }
+  },
+  "runId": "training01",
+  "adminAuth": {
+    "clientId": "22222222-2222-4222-8222-222222222222",
+    "adminOperatorUpn": "presenter@example.invalid"
+  }
+}

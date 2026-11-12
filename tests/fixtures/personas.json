@@ -1,0 +1,14 @@
+{
+  "packId": "fixture",
+  "version": "1.0",
+  "company": {"id": "test-company", "name": "Fictional Test", "industry": "Training", "locale": "en-US"},
+  "businessUnits": [{"id": "ops", "name": "Operations"}],
+  "people": [
+    {"personaId": "alice", "alias": "alice", "displayName": "Alice Test", "jobTitle": "Lead", "department": "Operations", "companyName": "Fictional Test", "officeLocation": "Test", "managerRef": null, "avatarAssetId": "alice-photo", "licenseProfile": "standard"},
+    {"personaId": "bob", "alias": "bob", "displayName": "Bob Test", "jobTitle": "Analyst", "department": "Operations", "companyName": "Fictional Test", "officeLocation": "Test", "managerRef": "alice", "avatarAssetId": "bob-photo", "licenseProfile": "standard"}
+  ],
+  "avatarAssets": [
+    {"id": "alice-photo", "path": "alice.jpg", "mediaType": "image/jpeg", "sha256": "bb70bd1707028b5e3786c3314a73e1e8f318d5711f49a852f30d6945289e4e55", "rights": {"license": "CC0-1.0", "source": "Generated test artwork", "attribution": "Test suite", "evidencePath": "rights.txt"}},
+    {"id": "bob-photo", "path": "bob.jpg", "mediaType": "image/jpeg", "sha256": "58a61729c7aa82c3fadd36ef0df1b21b9889473c868038579f596043e8c5587f", "rights": {"license": "CC0-1.0", "source": "Generated test artwork", "attribution": "Test suite", "evidencePath": "rights.txt"}}
+  ]
+}

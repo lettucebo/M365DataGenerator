@@ -1,0 +1,257 @@
+{
+  "packId": "m365-sample",
+  "version": "1.1",
+  "accountSource": "Existing",
+  "company": {
+    "id": "contoso",
+    "name": "Contoso",
+    "industry": "Diversified industrial and technology group: smart manufacturing, information services, financial operations and telecommunications",
+    "locale": "zh-TW"
+  },
+  "businessUnits": [
+    {
+      "id": "manufacturing",
+      "name": "Smart Manufacturing"
+    },
+    {
+      "id": "information",
+      "name": "Information Services"
+    },
+    {
+      "id": "finance",
+      "name": "Financial Operations"
+    },
+    {
+      "id": "telecom",
+      "name": "Telecommunications Services"
+    },
+    {
+      "id": "shared",
+      "name": "Group Shared Services"
+    }
+  ],
+  "people": [
+    {
+      "personaId": "patti-fernandez",
+      "identityHint": {
+        "displayName": "Patti Fernandez",
+        "alias": "pattif"
+      },
+      "profile": {
+        "jobTitle": "Group Chief Executive Officer",
+        "department": "Group Shared Services",
+        "companyName": "Contoso",
+        "officeLocation": "Singapore"
+      }
+    },
+    {
+      "personaId": "megan-bowen",
+      "identityHint": {
+        "displayName": "Megan Bowen",
+        "alias": "meganb"
+      },
+      "profile": {
+        "jobTitle": "General Manager, Smart Manufacturing",
+        "department": "Smart Manufacturing",
+        "companyName": "Contoso",
+        "officeLocation": "Taipei, Taiwan"
+      }
+    },
+    {
+      "personaId": "adele-vance",
+      "identityHint": {
+        "displayName": "Adele Vance",
+        "alias": "adelev"
+      },
+      "profile": {
+        "jobTitle": "Process Quality Manager",
+        "department": "Smart Manufacturing",
+        "companyName": "Contoso",
+        "officeLocation": "Taichung, Taiwan"
+      },
+      "managerRef": "megan-bowen"
+    },
+    {
+      "personaId": "alex-wilber",
+      "identityHint": {
+        "displayName": "Alex Wilber",
+        "alias": "alexw"
+      },
+      "profile": {
+        "jobTitle": "Production Planning Manager",
+        "department": "Smart Manufacturing",
+        "companyName": "Contoso",
+        "officeLocation": "Taichung, Taiwan"
+      },
+      "managerRef": "megan-bowen"
+    },
+    {
+      "personaId": "diego-siciliani",
+      "identityHint": {
+        "displayName": "Diego Siciliani",
+        "alias": "diegos"
+      },
+      "profile": {
+        "jobTitle": "General Manager, Information Services",
+        "department": "Information Services",
+        "companyName": "Contoso",
+        "officeLocation": "Tokyo, Japan"
+      },
+      "managerRef": "patti-fernandez"
+    },
+    {
+      "personaId": "grady-archie",
+      "identityHint": {
+        "displayName": "Grady Archie",
+        "alias": "gradya"
+      },
+      "profile": {
+        "jobTitle": "Data Engineer",
+        "department": "Information Services",
+        "companyName": "Contoso",
+        "officeLocation": "Tokyo, Japan"
+      },
+      "managerRef": "diego-siciliani"
+    },
+    {
+      "personaId": "johanna-lorenz",
+      "identityHint": {
+        "displayName": "Johanna Lorenz",
+        "alias": "johannal"
+      },
+      "profile": {
+        "jobTitle": "Application Architect",
+        "department": "Information Services",
+        "companyName": "Contoso",
+        "officeLocation": "Seoul, South Korea"
+      },
+      "managerRef": "diego-siciliani"
+    },
+    {
+      "personaId": "lynne-robbins",
+      "identityHint": {
+        "displayName": "Lynne Robbins",
+        "alias": "lynner"
+      },
+      "profile": {
+        "jobTitle": "Service Delivery Manager",
+        "department": "Information Services",
+        "companyName": "Contoso",
+        "officeLocation": "Seoul, South Korea"
+      },
+      "managerRef": "diego-siciliani"
+    },
+    {
+      "personaId": "lee-gu",
+      "identityHint": {
+        "displayName": "Lee Gu",
+        "alias": "leeg"
+      },
+      "profile": {
+        "jobTitle": "General Manager, Financial Operations",
+        "department": "Financial Operations",
+        "companyName": "Contoso",
+        "officeLocation": "Singapore"
+      },
+      "managerRef": "patti-fernandez"
+    },
+    {
+      "personaId": "lidia-holloway",
+      "identityHint": {
+        "displayName": "Lidia Holloway",
+        "alias": "lidiah"
+      },
+      "profile": {
+        "jobTitle": "Financial Control Manager",
+        "department": "Financial Operations",
+        "companyName": "Contoso",
+        "officeLocation": "Singapore"
+      },
+      "managerRef": "lee-gu"
+    },
+    {
+      "personaId": "pradeep-gupta",
+      "identityHint": {
+        "displayName": "Pradeep Gupta",
+        "alias": "pradeepg"
+      },
+      "profile": {
+        "jobTitle": "Management Accounting Analyst",
+        "department": "Financial Operations",
+        "companyName": "Contoso",
+        "officeLocation": "Hong Kong"
+      },
+      "managerRef": "lee-gu"
+    },
+    {
+      "personaId": "miriam-graham",
+      "identityHint": {
+        "displayName": "Miriam Graham",
+        "alias": "miriamg"
+      },
+      "profile": {
+        "jobTitle": "General Manager, Telecommunications Services",
+        "department": "Telecommunications Services",
+        "companyName": "Contoso",
+        "officeLocation": "Bangkok, Thailand"
+      },
+      "managerRef": "patti-fernandez"
+    },
+    {
+      "personaId": "nestor-wilke",
+      "identityHint": {
+        "displayName": "Nestor Wilke",
+        "alias": "nestorw"
+      },
+      "profile": {
+        "jobTitle": "Network Reliability Engineer",
+        "department": "Telecommunications Services",
+        "companyName": "Contoso",
+        "officeLocation": "Bangkok, Thailand"
+      },
+      "managerRef": "miriam-graham"
+    },
+    {
+      "personaId": "henrietta-mueller",
+      "identityHint": {
+        "displayName": "Henrietta Mueller",
+        "alias": "henriettam"
+      },
+      "profile": {
+        "jobTitle": "Group Project Management Manager",
+        "department": "Group Shared Services",
+        "companyName": "Contoso",
+        "officeLocation": "Singapore"
+      },
+      "managerRef": "patti-fernandez"
+    },
+    {
+      "personaId": "isaiah-langer",
+      "identityHint": {
+        "displayName": "Isaiah Langer",
+        "alias": "isaiahl"
+      },
+      "profile": {
+        "jobTitle": "Group Procurement Manager",
+        "department": "Group Shared Services",
+        "companyName": "Contoso",
+        "officeLocation": "Kuala Lumpur, Malaysia"
+      },
+      "managerRef": "patti-fernandez"
+    },
+    {
+      "personaId": "joni-sherman",
+      "identityHint": {
+        "displayName": "Joni Sherman",
+        "alias": "jonis"
+      },
+      "profile": {
+        "jobTitle": "Group Information Security Manager",
+        "department": "Group Shared Services",
+        "companyName": "Contoso",
+        "officeLocation": "Singapore"
+      },
+      "managerRef": "patti-fernandez"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+name: Offline tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      UV_DEFAULT_INDEX: https://pypi.org/simple/
+      UV_NO_PROGRESS: "1"
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.14"
+          enable-cache: false
+      - name: Restore hash-locked offline test dependencies
+        run: |
+          uv venv --python 3.11 .venv
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          uv pip sync --python .\.venv\Scripts\python.exe --require-hashes --index-url https://pypi.org/simple/ .\dev.lock
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Parse every PowerShell entry and compile Python
+        run: |
+          if ($PSVersionTable.PSVersion -lt [version]'7.5') { throw 'PowerShell 7.5+ required.' }
+          $files = @(Get-ChildItem .\engine,.\tests -Recurse -File -Include *.ps1,*.psm1) + @(Get-Item .\Invoke-M365Demo.ps1,.\requirements.psd1)
+          $count = 0
+          foreach ($file in $files) {
+            $tokens = $null; $errors = $null
+            $null = [Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$tokens, [ref]$errors)
+            if ($errors.Count) { throw "Syntax errors: $($file.FullName)" }
+            $count++
+          }
+          Write-Host "PowerShellFiles=$count SyntaxErrors=0"
+          & .\.venv\Scripts\python.exe -m compileall -q .\generator .\tests
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Python unit tests (no browser dependency)
+        run: |
+          uv run --offline --no-sync python -m pytest -q --tb=short -p no:cacheprovider
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: PowerShell unit tests (no Graph SDK or credentials)
+        run: |
+          pwsh -NoProfile -NonInteractive -File .\tests\powershell\Test-Unit.ps1 -Area All
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Real runner and adapters with isolated synthetic copies only
+        run: |
+          pwsh -NoProfile -NonInteractive -File .\tests\powershell\Test-Integration.ps1
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Validate fixture and complete published starter
+        run: |
+          pwsh -NoProfile -NonInteractive -File .\Invoke-M365Demo.ps1 -Mode Validate -PackPath .\tests\fixtures\scenario.json -PersonaPackPath .\tests\fixtures\personas.json -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'Fixture Validate must pass.' }
+          pwsh -NoProfile -NonInteractive -File .\Invoke-M365Demo.ps1 -Mode Validate -PersonaPackPath .\tests\fixtures\personas.json -PersonasOnly -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'Fixture personas-only must pass.' }
+          foreach ($pair in @(
+              @{ Scenario = 'rich-training'; Personas = 'company-24' },
+              @{ Scenario = 'minimal'; Personas = 'company-24' },
+              @{ Scenario = 'sample-rich'; Personas = 'm365-sample' },
+              @{ Scenario = 'sample-minimal'; Personas = 'm365-sample' },
+              @{ Scenario = 'existing-minimal'; Personas = 'existing-template' })) {
+            $raw = & .\.venv\Scripts\python.exe .\generator\validate_pack.py --pack ".\examples\$($pair.Scenario)\scenario.json" --personas ".\personas\$($pair.Personas)\personas.json"
+            if ($LASTEXITCODE -ne 0) { throw 'Published starter must validate.' }
+            $validation = $raw | ConvertFrom-Json -AsHashtable
+            if (-not $validation.valid -or $validation.errors.Count -ne 0) { throw 'Published starter contains invalid assets or references.' }
+          }
+          pwsh -NoProfile -NonInteractive -File .\Invoke-M365Demo.ps1 -Mode Validate -PackPath .\examples\rich-training\scenario.json -PersonaPackPath .\personas\company-24\personas.json -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'CLI starter must validate.' }
+          pwsh -NoProfile -NonInteractive -File .\Invoke-M365Demo.ps1 -Mode Validate -PersonaPackPath .\personas\company-24\personas.json -PersonasOnly -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'CLI personas must validate.' }
+          pwsh -NoProfile -NonInteractive -File .\Invoke-M365Demo.ps1 -Mode Validate -PackPath .\examples\sample-rich\scenario.json -PersonaPackPath .\personas\m365-sample\personas.json -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'CLI Existing sample pair must validate.' }
+          pwsh -NoProfile -NonInteractive -File .\Invoke-M365Demo.ps1 -Mode Validate -PackPath .\examples\existing-minimal\scenario.json -PersonaPackPath .\personas\existing-template\personas.json -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'CLI Existing template pair must validate.' }
+          pwsh -NoProfile -NonInteractive -File .\Invoke-M365Demo.ps1 -Mode Validate -PersonaPackPath .\personas\existing-template\personas.json -PersonasOnly -NonInteractive
+          if ($LASTEXITCODE -ne 0) { throw 'CLI Existing personas must validate.' }
+          Write-Host 'Fixture=Validated Starter=Validated ExistingPairs=Validated Portraits=24 Live=NotRun'
+          exit 0

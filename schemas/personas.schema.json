@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Persona Pack: 1.0 (Managed, portraits) or 1.1 (Existing accounts)",
+  "type": "object",
+  "if": {"properties": {"version": {"const": "1.1"}}, "required": ["version"]},
+  "then": {"$ref": "#/$defs/existingPack"},
+  "else": {"$ref": "#/$defs/managedPack"},
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"},
+    "text": {"type": "string", "minLength": 1, "maxLength": 4096},
+    "company": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "industry", "locale"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "name": {"$ref": "#/$defs/text"}, "industry": {"$ref": "#/$defs/text"}, "locale": {"$ref": "#/$defs/text"}}
+    },
+    "businessUnits": {"type": "array", "minItems": 1, "items": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "name": {"$ref": "#/$defs/text"}}
+    }},
+    "profileText": {
+      "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[^\\u0000-\\u001f\\u007f]+$",
+      "not": {"pattern": "^\\s+$"}
+    },
+    "hintText": {
+      "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[^@\\u0000-\\u001f\\u007f]+$",
+      "not": {"pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"}
+    },
+    "managedPack": {
+      "type": "object", "additionalProperties": false,
+      "required": ["packId", "version", "company", "businessUnits", "people", "avatarAssets"],
+      "properties": {
+        "packId": {"$ref": "#/$defs/id"},
+        "version": {"const": "1.0"},
+        "company": {"$ref": "#/$defs/company"},
+        "businessUnits": {"$ref": "#/$defs/businessUnits"},
+        "people": {"type": "array", "minItems": 1, "maxItems": 1000, "items": {
+          "type": "object", "additionalProperties": false,
+          "required": ["personaId", "alias", "displayName", "jobTitle", "department", "companyName", "officeLocation", "managerRef", "avatarAssetId", "licenseProfile"],
+          "properties": {
+            "personaId": {"$ref": "#/$defs/id"}, "alias": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,39}$"},
+            "displayName": {"$ref": "#/$defs/text"}, "jobTitle": {"$ref": "#/$defs/text"},
+            "department": {"$ref": "#/$defs/text"}, "companyName": {"$ref": "#/$defs/text"},
+            "officeLocation": {"$ref": "#/$defs/text"}, "managerRef": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+            "avatarAssetId": {"$ref": "#/$defs/id"}, "licenseProfile": {"$ref": "#/$defs/id"}
+          }
+        }},
+        "avatarAssets": {"type": "array", "minItems": 1, "maxItems": 1000, "items": {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "path", "mediaType", "sha256", "rights"],
+          "properties": {
+            "id": {"$ref": "#/$defs/id"}, "path": {"$ref": "#/$defs/text"},
+            "mediaType": {"const": "image/jpeg"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "rights": {
+              "type": "object", "additionalProperties": false, "required": ["license", "source", "attribution", "evidencePath"],
+              "properties": {"license": {"$ref": "#/$defs/text"}, "source": {"$ref": "#/$defs/text"}, "attribution": {"$ref": "#/$defs/text"}, "evidencePath": {"$ref": "#/$defs/text"}}
+            }
+          }
+        }}
+      }
+    },
+    "existingPack": {
+      "type": "object", "additionalProperties": false,
+      "required": ["packId", "version", "accountSource", "company", "businessUnits", "people"],
+      "properties": {
+        "packId": {"$ref": "#/$defs/id"},
+        "version": {"const": "1.1"},
+        "accountSource": {"const": "Existing"},
+        "company": {"$ref": "#/$defs/company"},
+        "businessUnits": {"$ref": "#/$defs/businessUnits"},
+        "people": {"type": "array", "minItems": 1, "maxItems": 1000, "items": {
+          "type": "object", "additionalProperties": false, "required": ["personaId"],
+          "properties": {
+            "personaId": {"$ref": "#/$defs/id"},
+            "identityHint": {
+              "type": "object", "additionalProperties": false, "minProperties": 1,
+              "properties": {"displayName": {"$ref": "#/$defs/hintText"}, "alias": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,39}$"}}
+            },
+            "profile": {
+              "type": "object", "additionalProperties": false, "minProperties": 1,
+              "properties": {
+                "jobTitle": {"$ref": "#/$defs/profileText"}, "department": {"$ref": "#/$defs/profileText"},
+                "companyName": {"$ref": "#/$defs/profileText"}, "officeLocation": {"$ref": "#/$defs/profileText"}
+              }
+            },
+            "managerRef": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]}
+          }
+        }}
+      }
+    }
+  }
+}

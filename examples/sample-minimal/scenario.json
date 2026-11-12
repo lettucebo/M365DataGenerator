@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "1.0",
+  "scenario": {
+    "id": "chengliu-sample-minimal",
+    "title": "澄流最小郵件範例（Microsoft 365 sample 人物版）",
+    "locale": "zh-TW",
+    "anchorDate": "2026-10-26",
+    "timeZone": "Asia/Taipei",
+    "learningObjectives": [
+      "驗證角色參照、實際回覆關係與 Presenter 收件；不代表服務已就緒"
+    ],
+    "personaPackId": "m365-sample"
+  },
+  "roles": {
+    "MfgLead": {
+      "personaId": "megan-bowen",
+      "businessUnitId": "manufacturing",
+      "responsibility": "產能與品質放行決策"
+    },
+    "QualityLead": {
+      "personaId": "adele-vance",
+      "businessUnitId": "manufacturing",
+      "responsibility": "批次抽驗、隔離與複測"
+    }
+  },
+  "stories": [
+    {
+      "id": "minimal-quality",
+      "title": "40台試點範圍確認",
+      "facts": [
+        {
+          "id": "scope",
+          "text": "原創虛構：A批40台為受控試點，並非120台全面部署。"
+        }
+      ]
+    }
+  ],
+  "assets": [],
+  "outlook": {
+    "threads": [
+      {
+        "id": "minimal-thread",
+        "storyId": "minimal-quality",
+        "messages": [
+          {
+            "id": "minimal-mail-1",
+            "action": "send",
+            "parentId": null,
+            "fromRole": "MfgLead",
+            "toRoles": [
+              "QualityLead"
+            ],
+            "ccRoles": [
+              "Presenter"
+            ],
+            "subject": "確認試點範圍",
+            "bodyHtml": "<p>請確認 A 批 40 台受控試點範圍，不把 120 台到貨數當作部署承諾。品質放行也不代表預算或付款已核准。</p>",
+            "assetRefs": []
+          },
+          {
+            "id": "minimal-mail-2",
+            "action": "reply",
+            "parentId": "minimal-mail-1",
+            "fromRole": "QualityLead",
+            "toRoles": [
+              "MfgLead",
+              "Presenter"
+            ],
+            "ccRoles": [],
+            "subject": "Re: 確認試點範圍",
+            "bodyHtml": "<p>確認僅 A 批 40 台進受控試點；我會保留隔離與後續閘門，沒有將 120 台標為全面上線。此回覆只確認試點範圍，不代表服務已就緒。</p>",
+            "assetRefs": []
+          }
+        ]
+      }
+    ]
+  }
+}
